@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>UID:
+        <dd><input type=text size=12 name=UID>
+        <dt>Last Name:
+        <dd><input type=text size=12 name=last_name>
+        <dt>First Name:
+        <dd><input type=text size=12 name=last_name>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=directory_list>
+  {% for entry in directory_list %}
+    <li>{{ entry.last_name }}, {{ entry.first_name }}  {{ entry.UID }}</li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('audit') }}" method=post class=add-entry>
+      <dl>
+        <dt>UID:
+        <dd><select name=UID>
+          {% for entry in directory_all %}
+          <option value="{{ entry.UID }}">{{ entry.Last_name }}, {{ entry.first_name }}</option>
+          {% endfor %}
+          </select>
+          <dd><input type=submit value=Share>
+        
+      </dl>
+    </form>
+  {% endif %}
+  <ul class=directory_list>
+  {% for entry in directory_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  {{ entry.UID }}</li>
+    <li>Program: {{ entry.program_code }}</li>
+    <li>Specialization: {{ entry.major}}</li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em></li>
+  {% endfor %}
+  </ul>
+  <h3>Completed Requirements</h3>
+  <p>completed courses given the student's specialization</p>
+  <ul class=complete_course>
+  {% for entry in complete_course%}
+  <li>{% for item in entry.Complete %} {{item}} {% endfor %}</li>
+  {% endfor %}
+  </ul>
+
+  <h3>Remaining Requirements</h3>
+  <p>remaining courses given the student's specialization</p>
+  <ul class=remaining_course>
+  {% for entry in remaining_course%}
+  <li>{% for item in entry.Complete %} {{item}} {% endfor %}</li>
+  {% endfor %}
+  </ul>
+
+  <h3>Courses from current program</h3>
+  <p>current program credit total: <span>{% for entry in current_program_credit %} {{ entry.total }} {% endfor %} </span>
+  </p>
+  <ul class=current_program_list>  
+  {% for entry in current_program_list%}
+   <li> {{ entry.Class }}, {{ entry.Credits }}, {{ entry.Grade }} </li>
+  {% endfor %}
+  </ul>
+
+  <h3>Current semester</h3>
+  <ul class=current_semester_list>
+    
+    {% for entry in current_semester_list %}
+    <li>{{ entry.Class }}, {{ entry.Credits }}, {{ entry.Grade }} </li>
+  {% endfor %}
+  </ul>
+
+  <h3>Non-graduate courses</h3>
+  <ul class=nongrad_list>
+    {% for entry in nongrad_list %}
+    <li>{{ entry.Class }}, {{ entry.Credits }}, {{ entry.Grade }} </li>
+  {% endfor %}
+    </ul>
+  
+  <h3>Advanced Special Student courses</h3>
+  <ul class=ass_list>
+    {% for entry in ass_list %}
+    <li>{{ entry.Class }}, {{ entry.Credits }}, {{ entry.Grade }} </li>
+  {% endfor %}
+  
+
+{% endblock %}

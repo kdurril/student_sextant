@@ -1,0 +1,63 @@
+studentDirectoryII
+ - pull from megs
+ - listing of UID, Program, Specialization, PHR
+Student_records
+ - pull from megs
+ - course listing with semester, section, grade
+Student_reg
+ - pull from megs
+ - listing of program status by semester
+Student_startdate
+ - pull from megs (although derived from student_reg)
+ - listing of start, end and graduation dates
+
+
+course_records
+ - pull from https://ntst.umd.edu/soc/courses.html
+ - listing of section detail: professors, day and time, building and room, open seats, remaining seats and waitlist
+ - necessary for scheduling
+ - feasibility of finishing in a given time or with a particular specialization in a given time.
+
+program_code
+ - derived from Program in studentdirectoryII
+ - list of programs, total credits needed to graduate
+specialization
+ - derived from Program in studentdirectoryII
+grade
+ - derived from Program in studentdirectoryII
+ - add weights for letter grades (for calculating GPA)
+
+Course_requirements_status
+ - gather from specialization directors
+ - list per specialization of core requiremnets, specialization requirements, specialization electives and project course
+ - necessary to compute specialization completion, remaining requirements, total load of a specialization
+
+Advising_note
+ - capture student inquiries and meetings
+course_request_wavier
+course_request_nonpuaf
+advising_note_ext
+
+
+Incoming student structure should mirror StudentDirectoryII structure and relationships
+Incoming_students_directory
+Incoming_students_records
+Incoming_students_reg
+Incoming_students_startdate
+
+
+
+GA
+GA positions
+GA applications
+
+Specialization_update
+
+
+Conference_funding
+
+Outside_student_request
+
+PhDTracker
+PhDcommittee
+PhDprogress

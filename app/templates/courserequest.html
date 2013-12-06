@@ -1,0 +1,55 @@
+{% extends "layout_student.html" %}
+{% block subbody %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_course_request') }}" method=post class=add-entry>
+        <input type=hidden size=0 name=UID value={{ uid }}>
+      <dl>
+        <dt>Request type (waiver, outside@ CP, consortium, transfer):
+        <dd>
+            <select name=request_type>
+            <option value=""></option>
+            <option value="outside course">outside course</option>
+            <option value="waiver">waiver</option>
+            <option value="transfer">transfer</option>
+            </select>
+            
+        <dt>Course Number:
+        <dd><input type=text name=course_number size=10></input>
+        <dt>Course Title:
+        <dd><textarea name=course_title rows=1 cols=40></textarea>
+        <dt>PUAF Equivalent Course Number:
+        <dd><input type=text name=puaf_equivalent size=10></input>         
+        <dt>Evidence Type (Drop down w/ syllabus, writing sample, other):
+        <dd>
+            <select name=evidence_type>
+            <option value=""></option>
+            <option value="syllabus">syllabus</option>
+            <option value="writing sample">writing sample</option>
+            <option value="other">other</option>
+            </select>
+        
+        <dt>Decision (Yes, No, undecided for unresolved):
+        <dd>
+            <select name=decision>
+            <option value="undecided">undecided</option>
+            <option value="no">no</option>
+            <option value="yes">yes</option>
+            </select>
+        <dt>Decision Reason:
+        <dd><textarea name=decision_reason rows=5 cols=40></textarea>
+
+        <dt>Grantor:
+        <dd><textarea name=grantor rows=1 cols=40></textarea>
+        <dt>Grantor ID (THIS SHOULD BE BASED ON LOG_IN SESSION ID):
+        <dd> 
+        
+        <dd><input type=submit value=Send>
+      </dl>
+    </form>
+     <ul>
+    <li><a href="/{{uid}}/supportdocs">Upload Supporting Docs</a></li>
+    <li><a href="/{{uid}}/courserequest">Request Course Approval</a></li>
+    </ul>
+  {% endif %}
+  
+{% endblock %}

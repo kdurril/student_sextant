@@ -1,0 +1,35 @@
+{% extends "layout_student.html" %}
+{% block subbody %}
+<div>
+  {% if session.logged_in %}
+  
+    <form action="{{ url_for('advisingnote_add') }}" method=post class=advisingnote-add>
+      <input type=hidden size=10 name=UID value="{{uid}}">
+      <dl>
+        <dt>Question:
+        <dd><textarea name=student_inquiry rows=5 cols=40></textarea>
+        <dt>Response:
+        <dd><textarea name=response rows=5 cols=40></textarea>
+        <dt>Student Next Steps:
+        <dd><textarea name=next_action_student rows=5 cols=40></textarea>
+        <dt>Adviser Next Steps:
+        <dd><textarea name=next_action_adviser rows=5 cols=40></textarea>        
+        <dd><input type=submit value=Send>
+      </dl>
+    </form>
+    <ul>
+    <li><a href="/{{uid}}/supportdocs">Upload Supporting Docs</a></li>
+    <li><a href="/{{uid}}/courserequest">Request Course Approval</a></li>
+    </ul>
+
+  <ul class=inquiry_list>
+  {% for entry in inquiry_list %}
+  <li>{{ entry.UID}}, Inquiry: {{ entry.student_inquiry}}, Response: {{ entry.response }}, Student_action: {{ entry.next_action_student}}, Advisor_Action: {{ entry.next_action_adviser }}
+  </li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% endblock %}

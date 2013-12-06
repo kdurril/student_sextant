@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('directory_entries') }}" method=post class=add-entry>
+      <dl>
+        <dt>UID:
+        <dd><input type=text size=12 name=UID>
+        
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  
+  <h3>Masters in Public Policy (MAPO)</h3>
+  <ul class=mapo_list>
+  {% for entry in mapo_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+  <h3>Public Management (MAMG)</h3>
+  <ul class=mamg_list>
+  {% for entry in mamg_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+  <h3>Public Policy and Business Administration (BMPO)</h3>
+  <ul class=bmpo_list>
+  {% for entry in bmpo_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+  <h3>Doctoral Program in Policy Studies (POSI)</h3>
+  <ul class=posi_list>
+  {% for entry in posi_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+  <h3>Public Policy and Conservation Biology (PPCN)</h3>
+  <ul class=ppcn_list>
+  {% for entry in ppcn_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+  <h3>Engineering Public Policy (MEPP)</h3>
+  <ul class=mepp_list>
+  {% for entry in mepp_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+  <h3>Public Policy and Law (LMPO)</h3>
+  <ul class=lmpo_list>
+  {% for entry in lmpo_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+
+
+
+  {% endif %}
+  
+  
+  
+{% endblock %}

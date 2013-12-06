@@ -1,0 +1,18 @@
+
+    <form action="{{ url_for('auditmpp') }}" method=post class=add-entry>
+      <dl>
+        <dt>UID:
+        <dd><select name=UID>
+          {% for entry in directory_all %}
+          <option value="{{ entry.UID }}">{{ entry.Last_name }}, {{ entry.first_name }}</option>
+          {% endfor %}
+          </select></dd>
+        <dt>Registered Specialization:
+        <dd><select name=specialization>
+          {% for entry in specialization_list %}
+          <option value="{{ entry.specialization }}">{{ entry.specialization }}</option>
+          {% endfor %}
+          </select></dd>  
+          <dd><input type=submit value=Send></dd>
+      </dl>
+    </form>

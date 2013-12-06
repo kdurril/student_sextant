@@ -1,0 +1,45 @@
+Project Manager
+
+Nice to try:
+convert to Python 3.0
+
+Are we at minimum viable product?
+
+
+Extraction
+- script to pull data from Megs website
+
+Outstanding issues:
+CSV module - use for output of content
+
+
+Evaluation
+- portions of the program devoted to storing and analysing data
+
+PUAFdb
+move empty columns to seperate table in the directory.csv
+
+Add the course records table
+move the course sections to seperate table from course records
+
+move basic queries to seperate module for readability and independence issues
+
+
+Course Audit
+general program rules
+specialization rules
+
+sql
+
+Template
+- like sql module, this holds the templates for Course Audit output
+Create basic cases such as 
+
+Advising Notes
+- docuement to collect meeting notes and next steps
+- add decission templates for reducing/prioritizing options and clarifying value of outcomes
+
+
+GUI
+create basic functionality other users and general usage
+page for printing and reviewing course audit information

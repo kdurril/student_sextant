@@ -1,0 +1,65 @@
+<!doctype html>
+<title>Student Eval</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1><a href="/">Student Evaluation</a></h1>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+
+  </div>
+  
+  
+  {% endif %}
+  <ul class=directory_list>
+  {% for entry in directory_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  {{ entry.UID }}</li>
+    <li>Program: {{ entry.program_code }}</li>
+    <li>Specialization: {{ entry.major }}</li>
+    <li>Email: <a href="mailto:{{ entry.email }}?Subject=Follow-up">{{ entry.email }}</a></li>
+  </ul>
+  <p><a href="/{{entry.UID}}/advisingnote">Advising Note</a></p>
+  
+  {% endfor %}
+  
+
+  <h3>Audit: {{ specialization_id }}</h3>
+  <p>Requirement status given the student's specialization</p>
+  <ul class=complete_courseALT>
+  {% for entry in complete_courseALT %}
+
+  {% for item in entry.Complete %}
+    {% if item.Complete %}
+    <strong>Fulfilled</strong>
+
+      {% for course in item.Complete %}
+      <ul>
+      <li>{{course}}</li>
+      </ul>
+      {% endfor %}
+    
+    {% endif %}
+
+    {% if item.Incomplete %}
+    <strong>Incomplete</strong>
+      (complete at least {{ item.MinReq - item.Complete|count}} of the following:)
+      {% for course in item.Incomplete %}
+      <ul>
+      <li>{{course}}</li>
+      </ul>
+      {% endfor %}
+    
+    {% endif %}
+
+  {% endfor %}
+  {% endfor %}
+  </ul>
+
+</html>

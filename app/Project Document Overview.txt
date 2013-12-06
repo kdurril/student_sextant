@@ -1,0 +1,27 @@
+Module Name
+Module description
+
+audit_dicts
+containers that hold the program requirement information
+
+audit_dict_v1_3
+
+audit_review_class
+class to process program requirements
+requirements
+specialization
+
+
+audit_sql
+sql statement that query for:
+current program semester
+current program courses
+current program credits
+not current program courses
+pregrad courses for advanced special students
+
+
+course_audit_sql
+
+eval_app
+
