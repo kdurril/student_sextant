@@ -16,6 +16,7 @@ import re
 import codecs
 from datetime import date
 from os import path, mkdir
+import shutil
 
 
 
@@ -137,15 +138,26 @@ def get_all(sem):
     for x in get_catalog(sem):
         dept_get(sem, x[0])
     driver.close()
+    today_dir = create_path(sem, "ALL") 
+    new_path = make_path(today_dir)
+    shutil.move("../evaluation/courseplan/courses.csv", today_dir+"/courses.csv")
+    shutil.move("../evaluation/courseplan/sections.csv", today_dir+"/sections.csv")
+
 
 def get_some(sem, start):
     dept_list = get_catalog(sem) 
     for x in dept_list[start:]:
         dept_get(sem, x[0])
     driver.close()
+    
 
 
 #get_all("201401")
-get_some("201401", 49)
-#dept_get("201401", "COMM")
+#get_some("201401", 49)
+dept_get("201401", "PUAF")
+today_dir = create_path("201401", "PUAF")
+new_path = make_path(today_dir)
+shutil.move("../evaluation/courseplan/courses.csv", today_dir+"/courses.csv")
+shutil.move("../evaluation/courseplan/sections.csv", today_dir+"/sections.csv")
+
 #driver.close()
