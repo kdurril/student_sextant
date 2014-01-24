@@ -3,6 +3,9 @@
 import csv 
 import sqlite3
 import sys
+import replaceheader as rh
+
+rh.replaceheader()
 
 #sqlite3 db from student records
 
@@ -175,8 +178,9 @@ curs.execute(qry_create_directory)
 
 with open("../evaluation/db/directory_tab.csv", "r+") as infile:
     dr = csv.DictReader(infile, delimiter = ',')
-    to_db = [(i['Last_name'], i['first_name'], i['middle_name'], i['UID'], i['Applicants_only_sem'], i['email'],\
-            i['birthdate'], i['major'], i['program_code'], i['advisor'], i['street1'], i['street2'], i['street3'], i['city'],\
+    to_db = [(i['Last_name'], i['first_name'], i['middle_name'], i['UID'],\
+            i['Applicants_only_sem'], i['email'], i['birthdate'], i['major'],\
+            i['program_code'], i['advisor'], i['street1'], i['street2'], i['street3'], i['city'],\
             i['state'], i['zip'], i['country'], i['degree_name'], i['Applicants_only_GRE_v'], i['Applicants_only_GRE_a'],\
             i['Applicants_only_GRE_q'], i['Applicants_only_GRE_v_percentile'], i['Applicants_only_GRE_a_percentile'],\
             i['Applicants_only_GRE_q_percentile'], i['Applicants_only_rating'], i['Applicants_only_TWE'], i['Applicants_only_TOEFL'],\

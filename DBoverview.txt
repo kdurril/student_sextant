@@ -11,7 +11,6 @@ Student_startdate
  - pull from megs (although derived from student_reg)
  - listing of start, end and graduation dates
 
-
 course_records
  - pull from https://ntst.umd.edu/soc/courses.html
  - listing of section detail: professors, day and time, building and room, open seats, remaining seats and waitlist

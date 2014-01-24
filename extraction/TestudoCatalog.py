@@ -105,7 +105,7 @@ def dept_get(sem, dept):
                 cap = re.compile('\w{,4}')
                 cap = cap.search(text)
                 cap = cap.group(0)
-                if 'Contact' in text or ":" not in text[:10]:
+                if 'Contact' in text or ":" not in text[:7]:
                     return [text]
                 else:
                     cap2 = re.compile('\d.+m')
@@ -138,6 +138,14 @@ def get_all(sem):
         dept_get(sem, x[0])
     driver.close()
 
+def get_some(sem, start):
+    dept_list = get_catalog(sem) 
+    for x in dept_list[start:]:
+        dept_get(sem, x[0])
+    driver.close()
+
+
 #get_all("201401")
-#dept_get("201401", "PUAF")
+get_some("201401", 49)
+#dept_get("201401", "COMM")
 #driver.close()

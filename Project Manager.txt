@@ -24,7 +24,6 @@ move the course sections to seperate table from course records
 
 move basic queries to seperate module for readability and independence issues
 
-
 Course Audit
 general program rules
 specialization rules

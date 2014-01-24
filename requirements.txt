@@ -1,0 +1,7 @@
+﻿Flask == 0.10
+Selenium
+BeautifulSoup
+lxml
+twisted
+scrapy
+

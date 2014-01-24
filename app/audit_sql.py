@@ -13,40 +13,44 @@ qry_directory_list = '''SELECT UID, Last_name, first_name,
                         FROM directory 
                         ORDER BY program_code, Last_name'''
 
+#student directory info 
+qry_directory_by_uid = '''SELECT UID, Last_name, first_name,
+                               email, major, program_code
+                          FROM directory 
+                          WHERE UID=?'''
+
 
 #get semesters of student's current program
 #then use these semesters to get courses from current program
 #many students have been in other programs,
 #we only want courses that count toward current program
 #however, bampp and advanced special students need previous program courses
+
+current_semester = "1401"
+
 qry_current_program_sem = '''SELECT reg.UID, reg.SEM 
 FROM reg 
-INNER JOIN (SELECT UID, Secondary FROM reg WHERE Sem = "1308") 
+INNER JOIN (SELECT UID, Secondary FROM reg WHERE Sem = {current_sem}) 
 AS current_program 
 ON (reg.UID = current_program.UID)
 AND (reg.Secondary = current_program.Secondary)
-'''
+'''.format(current_sem=current_semester)
 
-qry_cp_course = '''
-SELECT
-                student.UID, student.Class, student.Credits, student.Grade 
+qry_cp_course = '''SELECT
+                student.UID, student.Class, student.Credits, student.Grade
 FROM
                 student INNER JOIN (''' + qry_current_program_sem + ''') as c_p_s
                 ON student.UID = c_p_s.UID
-                AND student.Sem = c_p_s.Sem
-                
+                AND student.Sem = c_p_s.Sem             
 '''
 
-qry_current_credits = '''
-SELECT
+qry_current_credits = '''SELECT
                 student.UID, SUM(student.Credits) as SumofCredits 
 FROM
                 student INNER JOIN (''' + qry_current_program_sem + ''') as c_p_s
                 ON student.UID = c_p_s.UID 
                 AND student.Sem = c_p_s.Sem
-WHERE
-                 
-	
+
 GROUP BY
                 student.UID
 '''
@@ -59,9 +63,9 @@ FROM
 		(SELECT 
 			UID, Secondary 
 		FROM reg 
-		WHERE Sem = "1308") as current_program
+		WHERE Sem = {current_sem}) as current_program
 		ON prime.UID = current_program.UID
-'''
+'''.format(current_sem=current_semester)
 
 qry_cp_course_in = '''
 SELECT
@@ -79,11 +83,11 @@ FROM
 		(SELECT
 			UID, Secondary
 		FROM reg
-		WHERE Sem = "1308") as current_program
+		WHERE Sem = {current_sem}) as current_program
         ON reg.UID = current_program.UID
 WHERE
 		reg.Secondary != current_program.Secondary
-'''
+'''.format(current_sem=current_semester)
 
 qry_cp_course_out = '''
 SELECT p.UID, p.Class, p.Credits, p.Grade 
@@ -101,10 +105,33 @@ qry_cp_alt = '''SELECT cp1.UID, cp1.Class, cp1.Credits, cp1.Grade, cp1.Sem
           WHERE student.GRADE 
           IN ("A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-")
           )
-    AS cp1 INNER JOIN (''' + qry_current_program_sem + ''') as c_p_s
+    AS cp1 INNER JOIN ({current_program_sem}) as c_p_s
     ON (cp1.UID = c_p_s.UID) AND (cp1.Sem = c_p_s.Sem)
     WHERE cp1.UID = ?
+    ORDER BY cp1.Sem, cp1.Class'''.format(current_program_sem=qry_current_program_sem)
+
+qry_cp_all_grades = '''SELECT cp1.UID, cp1.Class, cp1.Credits, cp1.Grade, cp1.Sem
+    FROM (SELECT * from student)
+    AS cp1 
+    INNER JOIN (''' + qry_current_program_sem + ''') as c_p_s
+    ON (cp1.UID = c_p_s.UID) AND (cp1.Sem = c_p_s.Sem)
     ORDER BY cp1.Class'''
+
+qry_cp_all_grades_sum = '''SELECT cp1.UID, Sum(cp1.Credits) as SumofCredit
+    FROM (SELECT * from student) AS cp1 
+    INNER JOIN ({current_program_sem}) as c_p_s
+    ON (cp1.UID = c_p_s.UID) AND (cp1.Sem = c_p_s.Sem)
+    GROUP BY cp1.UID
+    '''.format(current_program_sem=qry_current_program_sem)
+
+qry_creditsum_directory = '''SELECT directory.Last_name, directory.first_name, 
+    creditcount.UID, directory.program_code, creditcount.SumofCredit
+    FROM ({0}) AS creditcount 
+    INNER JOIN directory
+    ON (creditcount.UID = directory.UID)
+    GROUP BY directory.program_code, directory.Last_name
+    '''.format(qry_cp_all_grades_sum)
+
 
 qry_pregrad = '''
 SELECT 
@@ -137,8 +164,8 @@ WHERE
 
 qry_current_sem = '''SELECT p.UID, p.Class, p.Credits, p.Grade, p.Sem
                     FROM student AS p
-                    WHERE Sem = "1308" AND Class != "" AND p.UID = ? 
-                    '''
+                    WHERE Sem = {current_sem} AND Class != "" AND p.UID = ? 
+                    '''.format(current_sem=current_semester)
 
 
 

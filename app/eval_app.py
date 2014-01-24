@@ -23,7 +23,8 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 UPLOAD_FOLDER = '../student'
-ALLOWED_EXTENSIONS = set(['.docx', '.doc', 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', '.xlsx', '.xls'])
+#test to see if ALLOWED EXTENSIONS takes a period prior to the extension
+ALLOWED_EXTENSIONS = set(['.docx', '.doc', '.txt', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.xlsx', '.xls'])
 
 
 
@@ -83,22 +84,60 @@ def directory_entries():
     check = [x[0] for x in check] 
     
     cur = g.db.execute('''SELECT UID, Last_name, first_name, 
-        email, major, program_code FROM directory order by Last_name;''')
+        email, major, program_code 
+        FROM directory 
+        ORDER BY program_code, Last_name;''')
 
     directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2],
                       email=row[3], major=row[4], program_code=row[5]
                       ) for row in cur.fetchall()]
+    
+    mapo_list = list()
+    mamg_list = list()
+    bmpo_list = list()
+    lmpo_list = list()
+    posi_list = list()
+    ppcn_list = list()
+    mepp_list = list()
+    other_list = list()
 
-    mapo_list = [x for x in directory_list if x['program_code'] == "MAPO"]
-    mamg_list = [x for x in directory_list if x['program_code'] == "MAMG"]
-    bmpo_list = [x for x in directory_list if x['program_code'] == "BMPO"]
-    lmpo_list = [x for x in directory_list if x['program_code'] == "LMPO"]
-    posi_list = [x for x in directory_list if x['program_code'] == "POSI"]
-    ppcn_list = [x for x in directory_list if x['program_code'] == "PPCN"]
-    mepp_list = [x for x in directory_list if x['program_code'] == "MEPP"]
+    def program_classify():   
+        for student in directory_list:
+            if student['program_code'] == "MAPO":
+                mapo_list.append(student)
+            elif student['program_code'] == "MAMG":
+                mamg_list.append(student)
+            elif student['program_code'] == "BMPO":
+                bmpo_list.append(student)
+            elif student['program_code'] == "LMPO":
+                lmpo_list.append(student)
+            elif student['program_code'] == "POSI":
+                posi_list.append(student)
+            elif student['program_code'] == "PPCN":
+                ppcn_list.append(student)
+            elif student['program_code'] == "MEPP":
+                mepp_list.append(student)
+            else:
+                other_list.append(student)
 
+    program_classify()
+
+    #mapo_list = [x for x in directory_list if x['program_code'] == "MAPO"]
+    #mamg_list = [x for x in directory_list if x['program_code'] == "MAMG"]
+    #bmpo_list = [x for x in directory_list if x['program_code'] == "BMPO"]
+    #lmpo_list = [x for x in directory_list if x['program_code'] == "LMPO"]
+    #posi_list = [x for x in directory_list if x['program_code'] == "POSI"]
+    #ppcn_list = [x for x in directory_list if x['program_code'] == "PPCN"]
+    #mepp_list = [x for x in directory_list if x['program_code'] == "MEPP"]
+    program_title_list = ["Master of Public Policy (MAPO)",
+                          "Master of Public Management (MAMG)",
+                          "Public Policy and Business Administration (BMPO)",
+                          "Public Policy and Law (LMPO)",
+                          "Doctoral Studies in Public Policy (POSI)",
+                          "Public Policy and Conservation Biology (PPCN)",
+                          "Engineering Public Policy (MEPP)"
+                          ]
     program_code_list = ["BMPO","LMPO","MAMG","MAPO","MEPP", "POSI", "PPCN"]
-
 
     return render_template('show_directory.html',
                         directory_list=directory_list,
@@ -114,20 +153,26 @@ def directory_entries():
 def auditbyid(uid):
     '''Program and course info for student page'''
     '''Used to provide the audit and course review'''
+    if not session.get('logged_in'):
+        abort(401)
 
     uid_check = g.db.execute('''SELECT UID FROM directory WHERE program_code="MAPO";''')
     check = uid_check.fetchall()
-    check = [x[0] for x in check] 
+    check = [x[0] for x in check]
     
     specialization = g.db.execute('SELECT DISTINCT major FROM directory')
     specialization_list = [dict(specialization=row[0]) for row in specialization.fetchall()]
 
     cur = g.db.execute('SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE program_code = "MAPO" order by Last_name;')
-    directory_all = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
+    directory_all = [dict(UID=row[0], Last_name=row[1],\
+     first_name=row[2], email=row[3], major=row[4],\
+      program_code=row[5]) for row in cur.fetchall()]
 
     
-    cur = g.db.execute("SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE UID=?", [uid])
-    directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
+    cur = g.db.execute(asql.qry_directory_by_uid, [uid])
+    directory_list = [dict(UID=row[0], Last_name=row[1],\
+     first_name=row[2], email=row[3], major=row[4],\
+         program_code=row[5]) for row in cur.fetchall()]
     
     cur = g.db.execute("SELECT UID, M_Start FROM start WHERE UID = ?", [uid])
     program_start = [dict(UID=row[0], m_start=row[1]) for row in cur.fetchall()]
@@ -165,7 +210,7 @@ def auditbyid(uid):
 
     current_program_list.extend(nongrad_list)
 
-    #query for Advanced Special Student courses
+    #Advanced Special Student courses
 
     cur = g.db.execute(asql.qry_ass, [uid])
     ass_list = [dict(UID=row[0], Class=row[1], Grade=row[2],\
@@ -205,6 +250,8 @@ def auditbyid(uid):
 @app.route('/<user_id>/auditalt/<specialization_id>', methods=['GET'])
 def auditalt(user_id, specialization_id):
     "Alternative audits: review courses under another specializations rules"
+    if not session.get('logged_in'):
+        abort(401)
 
     user_id_txt = user_id
     user_id = [user_id]
@@ -220,7 +267,7 @@ def auditalt(user_id, specialization_id):
     directory_all = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
 
     if request.method == 'GET' and specialization_id in ad.All_dict:
-        cur = g.db.execute("SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE UID=?", user_id)
+        cur = g.db.execute(asql.qry_directory_by_uid, user_id)
         directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
         
         major = directory_list[0]['major']
@@ -229,13 +276,13 @@ def auditalt(user_id, specialization_id):
         alt_spec_uri = [dict(uri="/{0}/auditalt/{1}".format(user_id_txt, x['specialization']), specialization=x['specialization']) for x in specialization_list]
 
 
-        qry_current_program_sem = '''SELECT reg.UID, reg.SEM FROM reg, (SELECT UID, Secondary FROM reg WHERE Sem = "1308"
+        qry_current_program_sem = '''SELECT reg.UID, reg.SEM FROM reg, (SELECT UID, Secondary FROM reg WHERE Sem = "1401"
         ) as current_program WHERE reg.UID = current_program.UID AND reg.Secondary = current_program.Secondary
         '''
         qry_cp_alt = '''SELECT cp1.UID, cp1.Class, cp1.Credits, cp1.Grade, cp1.SEM 
         FROM (SELECT * from student 
-              WHERE student.Grade = "A" OR student.Grade = "A+" OR student.Grade = "A-" OR student.Grade LIKE "B%"
-              OR student.Grade = "C" OR student.Grade = "C+" or student.Grade = "C-")
+              WHERE student.Grade IN ("A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-")
+              )
         AS cp1, (''' + qry_current_program_sem + ''') AS c_p_s 
         WHERE cp1.UID = c_p_s.UID AND cp1.UID = ?
         AND cp1.Sem = c_p_s.Sem
@@ -248,7 +295,7 @@ def auditalt(user_id, specialization_id):
         #current semester courses
         qry_current_sem = '''SELECT p.UID, p.Class, p.Credits, p.Grade, p.Sem
                              FROM student AS p
-                             WHERE Sem = "1308" AND Class != "" AND p.UID = ? '''
+                             WHERE Sem = "1401" AND Class != "" AND p.UID = ? '''
         cur = g.db.execute(qry_current_sem, user_id)
         current_semester_list = [dict(UID=row[0], Class=row[1],\
          Credits=row[2], Grade=row[3], Sem=row[4]) for row in cur.fetchall()]
@@ -334,12 +381,16 @@ def advisingnote(uid):
     '''Subform of auditbyid, each advising note gets UID as hidden field,
      foreign key'''
     '''Primary form for recording advising sessions'''
+    if not session.get('logged_in'):
+        abort(401)
 
-    cur = g.db.execute('SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE program_code = "MAPO" AND UID=?;', [uid])
+    cur = g.db.execute('SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE program_code = "MAPO" AND UID = ?;', [uid])
     directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
 
-    cur = g.db.execute('SELECT UID, student_inquiry, response, next_action_student, next_action_adviser FROM inquiry WHERE UID=? order by date_stamp desc;', [uid])
-    inquiry_list = [dict(UID=row[0], student_inquiry=row[1], response=row[2], next_action_student=row[3], next_action_adviser=row[4]) for row in cur.fetchall()]
+    cur = g.db.execute('SELECT ID, UID, student_inquiry, response, next_action_student, next_action_adviser, date_stamp FROM inquiry WHERE UID=?  order by date_stamp desc;', [uid])
+    inquiry_list = [dict(note_id=row[0], UID=row[1], student_inquiry=row[2],
+        response=row[3], next_action_student=row[4], next_action_adviser=row[5], date_stamp=row[6]
+        ) for row in cur.fetchall()]
     return render_template('student_notes.html',\
         directory_list=directory_list,\
         uid=uid,\
@@ -356,7 +407,84 @@ def advisingnote_add():
                  [request.form['UID'], request.form['student_inquiry'], request.form['response'], request.form['next_action_student'], request.form['next_action_adviser']])
     g.db.commit()
     flash('New entry was successfully posted')
-    return redirect(url_for('directory_entries'))
+    return redirect(url_for('advisingnote', uid=request.form['UID']))
+
+@app.route('/<int:uid>/advisingnote/review')
+def advisingnote_review(uid):
+    '''Subform of auditbyid, each advising note gets UID as hidden field,
+     foreign key'''
+    '''Primary form for recording advising sessions'''
+    if not session.get('logged_in'):
+        abort(401)
+
+    cur = g.db.execute('SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE program_code = "MAPO" AND UID = ?;', [uid])
+    directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
+
+    cur = g.db.execute('SELECT ID, UID, student_inquiry, response, next_action_student, next_action_adviser, date_stamp FROM inquiry WHERE UID=? order by date_stamp desc;', [uid])
+    inquiry_list = [dict(note_id=row[0], UID=row[1], student_inquiry=row[2],
+        response=row[3], next_action_student=row[4], next_action_adviser=row[5], date_stamp=row[6]
+        ) for row in cur.fetchall()]
+    return render_template('student_notes_review.html',\
+        directory_list=directory_list,\
+        uid=uid,\
+        inquiry_list=inquiry_list)
+
+#advising note form
+@app.route('/<int:uid>/advisingnote/edit/<int:note_id>', methods=['GET','POST'])
+def advisingnote_edit(uid, note_id):
+    '''Inserts the advisingnote into the database'''
+
+    if not session.get('logged_in'):
+        abort(401)
+
+    cur = g.db.execute('SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE program_code = "MAPO" AND UID = ?;', [uid])
+    directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
+
+    if request.method == 'GET':
+        
+        cur = g.db.execute('''SELECT ID, UID, student_inquiry, response, 
+            next_action_student, next_action_adviser, date_stamp 
+            FROM inquiry 
+            WHERE ID =? 
+            ORDER BY date_stamp desc;''', [note_id])
+        inquiry_list = [dict(note_id=row[0], UID=row[1], student_inquiry=row[2],
+        response=row[3], next_action_student=row[4], next_action_adviser=row[5], date_stamp=row[6]
+        ) for row in cur.fetchall()]
+    return render_template('student_notes_update.html',
+        directory_list=directory_list,
+        uid=uid,
+        note_id=note_id,
+        inquiry_list=inquiry_list)
+
+@app.route('/advisingnote/edit/update', methods=['POST'])
+def advisingnote_edit_send():        
+    if request.method == 'POST':
+        g.db.execute('''UPDATE inquiry
+        SET student_inquiry = ?,
+        response = ?,
+        next_action_student = ?,
+        next_action_adviser = ?
+        WHERE ID = ?;''', 
+        [
+        request.form['student_inquiry'],
+        request.form['response'],
+        request.form['next_action_student'],
+        request.form['next_action_adviser'],
+        request.form['note_id']
+        ])
+        g.db.commit()
+        flash('Entry {0} was successfully updated'.format(request.form['note_id']))
+        return redirect(url_for('advisingnote', uid=request.form['UID']))
+
+@app.route('/advisingnote/edit/delete', methods=['POST'])
+def advisingnote_delete():        
+    if request.method == 'POST':
+        g.db.execute('''DELETE FROM inquiry WHERE ID = ?;''',
+        [request.form['note_id']
+        ])
+        g.db.commit()
+        flash('Entry {0} was successfully deleted'.format(request.form['note_id']))
+        return redirect(url_for('advisingnote', uid=request.form['UID']))
 
 #inquiry form
 @app.route('/<int:uid>/courserequest', methods=['GET', 'POST'])
@@ -444,6 +572,54 @@ def upload_file_add():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], uid+"_"+filename))
         return redirect(url_for('directory_entries',
                                 filename=filename))
+
+@app.route('/stats', methods=['GET'])
+def stats_agrregate_credit():
+    cur = g.db.execute(asql.qry_creditsum_directory)
+    credit_list = [dict(Last_name=row[0], first_name=row[1], 
+    UID=row[2], program_code=row[3], SumofCredit=row[4]
+    ) for row in cur.fetchall()]
+
+    mapo_list = list()
+    mamg_list = list()
+    bmpo_list = list()
+    lmpo_list = list()
+    posi_list = list()
+    ppcn_list = list()
+    mepp_list = list()
+    other_list = list()
+
+    def program_classify():   
+        for student in credit_list:
+            if student['program_code'] == "MAPO":
+                mapo_list.append(student)
+            elif student['program_code'] == "MAMG":
+                mamg_list.append(student)
+            elif student['program_code'] == "BMPO":
+                bmpo_list.append(student)
+            elif student['program_code'] == "LMPO":
+                lmpo_list.append(student)
+            elif student['program_code'] == "POSI":
+                posi_list.append(student)
+            elif student['program_code'] == "PPCN":
+                ppcn_list.append(student)
+            elif student['program_code'] == "MEPP":
+                mepp_list.append(student)
+            else:
+                other_list.append(student)
+
+    program_classify()
+
+    return render_template('stat_base.html', 
+                        credit_list=credit_list,
+                        mapo_list=mapo_list, 
+                        mamg_list=mamg_list, 
+                        bmpo_list=bmpo_list,
+                        lmpo_list=lmpo_list,
+                        posi_list=posi_list,
+                        ppcn_list=ppcn_list,
+                        mepp_list=mepp_list)
+
 
 if __name__ == '__main__':
     app.run()
