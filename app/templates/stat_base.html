@@ -1,33 +1,20 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <script>
-    $(function() {
-    var availableTags = [
-    {% for entry in directory_list %}
-    "{{ entry.Last_name }}, {{ entry.first_name }} {{ entry.UID }}",
-    {% endfor %}
-    "Durril, Kenneth 000000000"
-    ];
-    $( "#lookup" ).autocomplete({
-    source: availableTags
-    });
-    });
-    </script>
-    <form action="{{ url_for('directory_entries') }}" method=post class=add-entry>
+    <form action="{{ url_for('stats_agrregate_credit') }}" method=post class=add-entry>
       <dl>
         <dt>UID:
-        <dd><input id="lookup" type=text size=12 name=UID>
+        <dd><input type=text size=12 name=UID>
         
         <dd><input type=submit value=Share>
       </dl>
     </form>
-
   
   <h3>Masters in Public Policy (MAPO)</h3>
   <ul class=mapo_list>
-  {% for entry in mapo_list %}
+  {% for entry in credit_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
@@ -37,6 +24,7 @@
   <ul class=mamg_list>
   {% for entry in mamg_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
@@ -46,6 +34,7 @@
   <ul class=bmpo_list>
   {% for entry in bmpo_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
@@ -55,6 +44,7 @@
   <ul class=posi_list>
   {% for entry in posi_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
@@ -64,6 +54,7 @@
   <ul class=ppcn_list>
   {% for entry in ppcn_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
@@ -73,6 +64,7 @@
   <ul class=mepp_list>
   {% for entry in mepp_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
@@ -82,11 +74,21 @@
   <ul class=lmpo_list>
   {% for entry in lmpo_list %}
     <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
   </ul>
 
+  <h3>Other</h3>
+  <ul class=other_list>
+  {% for entry in other_list %}
+    <li>{{ entry.Last_name }}, {{ entry.first_name }}  <a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    <li>Total Credits: {{ entry.SumofCredit }}</li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
 
 
 
