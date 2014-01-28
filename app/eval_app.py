@@ -75,79 +75,86 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def directory_entries():
     '''Landing page, navigate to specific student from here'''
     '''List for each specialization to identify students by program'''
-    uid_check = g.db.execute('SELECT UID FROM directory')
-    check = uid_check.fetchall()
-    check = [x[0] for x in check] 
-    
-    cur = g.db.execute('''SELECT UID, Last_name, first_name, 
-        email, major, program_code 
-        FROM directory 
-        ORDER BY program_code, Last_name;''')
+    if request.method == 'GET':
+        uid_check = g.db.execute('SELECT UID FROM directory')
+        check = uid_check.fetchall()
+        check = [x[0] for x in check] 
+        
+        cur = g.db.execute('''SELECT UID, Last_name, first_name, 
+            email, major, program_code 
+            FROM directory 
+            ORDER BY program_code, Last_name;''')
 
-    directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2],
-                      email=row[3], major=row[4], program_code=row[5]
-                      ) for row in cur.fetchall()]
-    
-    mapo_list = list()
-    mamg_list = list()
-    bmpo_list = list()
-    lmpo_list = list()
-    posi_list = list()
-    ppcn_list = list()
-    mepp_list = list()
-    other_list = list()
+        directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2],
+                          email=row[3], major=row[4], program_code=row[5]
+                          ) for row in cur.fetchall()]
+        
+        mapo_list = list()
+        mamg_list = list()
+        bmpo_list = list()
+        lmpo_list = list()
+        posi_list = list()
+        ppcn_list = list()
+        mepp_list = list()
+        other_list = list()
 
-    def program_classify():   
-        for student in directory_list:
-            if student['program_code'] == "MAPO":
-                mapo_list.append(student)
-            elif student['program_code'] == "MAMG":
-                mamg_list.append(student)
-            elif student['program_code'] == "BMPO":
-                bmpo_list.append(student)
-            elif student['program_code'] == "LMPO":
-                lmpo_list.append(student)
-            elif student['program_code'] == "POSI":
-                posi_list.append(student)
-            elif student['program_code'] == "PPCN":
-                ppcn_list.append(student)
-            elif student['program_code'] == "MEPP":
-                mepp_list.append(student)
-            else:
-                other_list.append(student)
+        def program_classify():   
+            for student in directory_list:
+                if student['program_code'] == "MAPO":
+                    mapo_list.append(student)
+                elif student['program_code'] == "MAMG":
+                    mamg_list.append(student)
+                elif student['program_code'] == "BMPO":
+                    bmpo_list.append(student)
+                elif student['program_code'] == "LMPO":
+                    lmpo_list.append(student)
+                elif student['program_code'] == "POSI":
+                    posi_list.append(student)
+                elif student['program_code'] == "PPCN":
+                    ppcn_list.append(student)
+                elif student['program_code'] == "MEPP":
+                    mepp_list.append(student)
+                else:
+                    other_list.append(student)
 
-    program_classify()
+        program_classify()
 
-    #mapo_list = [x for x in directory_list if x['program_code'] == "MAPO"]
-    #mamg_list = [x for x in directory_list if x['program_code'] == "MAMG"]
-    #bmpo_list = [x for x in directory_list if x['program_code'] == "BMPO"]
-    #lmpo_list = [x for x in directory_list if x['program_code'] == "LMPO"]
-    #posi_list = [x for x in directory_list if x['program_code'] == "POSI"]
-    #ppcn_list = [x for x in directory_list if x['program_code'] == "PPCN"]
-    #mepp_list = [x for x in directory_list if x['program_code'] == "MEPP"]
-    program_title_list = ["Master of Public Policy (MAPO)",
-                          "Master of Public Management (MAMG)",
-                          "Public Policy and Business Administration (BMPO)",
-                          "Public Policy and Law (LMPO)",
-                          "Doctoral Studies in Public Policy (POSI)",
-                          "Public Policy and Conservation Biology (PPCN)",
-                          "Engineering Public Policy (MEPP)"
-                          ]
-    program_code_list = ["BMPO","LMPO","MAMG","MAPO","MEPP", "POSI", "PPCN"]
+        #mapo_list = [x for x in directory_list if x['program_code'] == "MAPO"]
+        #mamg_list = [x for x in directory_list if x['program_code'] == "MAMG"]
+        #bmpo_list = [x for x in directory_list if x['program_code'] == "BMPO"]
+        #lmpo_list = [x for x in directory_list if x['program_code'] == "LMPO"]
+        #posi_list = [x for x in directory_list if x['program_code'] == "POSI"]
+        #ppcn_list = [x for x in directory_list if x['program_code'] == "PPCN"]
+        #mepp_list = [x for x in directory_list if x['program_code'] == "MEPP"]
+        program_title_list = ["Master of Public Policy (MAPO)",
+                              "Master of Public Management (MAMG)",
+                              "Public Policy and Business Administration (BMPO)",
+                              "Public Policy and Law (LMPO)",
+                              "Doctoral Studies in Public Policy (POSI)",
+                              "Public Policy and Conservation Biology (PPCN)",
+                              "Engineering Public Policy (MEPP)"
+                              ]
+        program_code_list = ["BMPO","LMPO","MAMG","MAPO","MEPP", "POSI", "PPCN"]
 
-    return render_template('show_directory.html',
-                        directory_list=directory_list,
-                        mapo_list=mapo_list, 
-                        mamg_list=mamg_list, 
-                        bmpo_list=bmpo_list,
-                        lmpo_list=lmpo_list,
-                        posi_list=posi_list,
-                        ppcn_list=ppcn_list,
-                        mepp_list=mepp_list)
+        return render_template('show_directory.html',
+                            directory_list=directory_list,
+                            mapo_list=mapo_list, 
+                            mamg_list=mamg_list, 
+                            bmpo_list=bmpo_list,
+                            lmpo_list=lmpo_list,
+                            posi_list=posi_list,
+                            ppcn_list=ppcn_list,
+                            mepp_list=mepp_list)
+
+    if request.method == 'POST':
+        
+        uid_dig = request.form['UID'][-9:]
+
+        return redirect(url_for('auditbyid', uid=uid_dig))
 
 @app.route('/<int:uid>', methods=['GET'])
 def auditbyid(uid):

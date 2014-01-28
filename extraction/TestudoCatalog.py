@@ -150,14 +150,15 @@ def get_some(sem, start):
         dept_get(sem, x[0])
     driver.close()
     
+def get_one(sem="201401", dept="PUAF"):
+    dept_get(sem, dept)
+    today_dir = create_path(sem, dept)
+    new_path = make_path(today_dir)
+    shutil.move("../evaluation/courseplan/courses.csv", today_dir+"/courses.csv")
+    shutil.move("../evaluation/courseplan/sections.csv", today_dir+"/sections.csv")
 
-
-#get_all("201401")
+get_all("201401")
 #get_some("201401", 49)
-dept_get("201401", "PUAF")
-today_dir = create_path("201401", "PUAF")
-new_path = make_path(today_dir)
-shutil.move("../evaluation/courseplan/courses.csv", today_dir+"/courses.csv")
-shutil.move("../evaluation/courseplan/sections.csv", today_dir+"/sections.csv")
+
 
 #driver.close()
