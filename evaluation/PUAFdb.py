@@ -39,6 +39,7 @@ qry_create_directory = "CREATE TABLE directory (Last_name text, first_name text,
 
 curs.execute(qry_create_directory)
 
+# directory_tab.csv should be an ASCII file
 with open("../evaluation/db/directory_tab.csv", "r+") as infile:
     dr = csv.DictReader(infile, delimiter = ',')
     to_db = [(i['Last_name'], i['first_name'], i['middle_name'], i['UID'],\
@@ -52,16 +53,16 @@ with open("../evaluation/db/directory_tab.csv", "r+") as infile:
     i['GRE_Subject_Percentile'], i['GRE_Subject_Name'],\
     i['Dept_Admission_Dec'], i['GS_Admission_Dec'], i['Dept_provision_codes'],\
     i['GS_provision_codes'], i['GPA_undergrad'], i['Home_Phone'],\
-    i['Work_Phone'], i['Is_International'], i['ASF_Submit'],\ 
+    i['Work_Phone'], i['Is_International'], i['ASF_Submit'],\
     i['Recommendation_1_Name'], i['Recommendation_1_Received'],\
-    i['Recommendation_2_Name'],\ 
+    i['Recommendation_2_Name'],\
     i['Recommendation_2_Received'], i['Recommendation_3_Name'],\
     i['Recommendation_3_Received'], i['Local_address_street1'],\
-    i['Local_address_street2'], i['Local_address_street3'],\ 
-    i['Local_address_city'], i['Local_address_state'], i['Local_address_zip'],\ 
-    i['Local_address_country'], i['Num_Publications'],\ 
+    i['Local_address_street2'], i['Local_address_street3'],\
+    i['Local_address_city'], i['Local_address_state'], i['Local_address_zip'],\
+    i['Local_address_country'], i['Num_Publications'],\
     i['Last_Undergrad_Univ_code'], i['Last_Undergrad_Univs_Tier'],\
-    i['Last_Undergrad_Univ_Long_Name'],\ 
+    i['Last_Undergrad_Univ_Long_Name'],\
     i['Last_Undergrad_Univ_ASF_entered_GPA'],\
     i['Last_Undergrad_Univ_ASF_entered_Major_Department'],\
     i['Last_Undergrad_Univ_Transcript_Received'],\
@@ -70,7 +71,7 @@ with open("../evaluation/db/directory_tab.csv", "r+") as infile:
     i['Last_Graduate_Univ_ASF_entered_Major_Department'],\
     i['Last_Graduate_Transcript_Received'], i['Research_Interest_1'],\
     i['Research_Interest_2'], i['Research_Interest_3'],\
-    i['Research_Interest_4'], i['visa'], i['sex'], i['race'],\ 
+    i['Research_Interest_4'], i['visa'], i['sex'], i['race'],\
     i['citizenship'], i['Interview_Audition_Scheduled_Date'],\
     i['Interview_Audition_Scheduled_Location'],\
     i['Interview_Audition_Primary_Request_Date'],\
@@ -92,7 +93,7 @@ with open("../evaluation/db/directory_tab.csv", "r+") as infile:
     i['Financial_Aid_this_sem_2_Semester'],\
     i['Financial_Aid_this_sem_2_Department_offering'],\
     i['Financial_Aid_this_sem_2_PHR_ID'],\
-    i['Financial_Aid_this_sem_2_Type'], i['forFuture1'], i['forFuture2'],\ 
+    i['Financial_Aid_this_sem_2_Type'], i['forFuture1'], i['forFuture2'],\
     i['forFuture3'], i['forFuture4'], i['forFuture5'], i['forFuture6'],\
     i['forFuture7'], i['forFuture8'], i['forFuture9'], i['forFuture10'],\
     i['forFuture11'], i['forFuture12'], i['forFuture13'], i['forFuture14'],\

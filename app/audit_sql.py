@@ -26,7 +26,7 @@ qry_directory_by_uid = '''SELECT UID, Last_name, first_name,
 #we only want courses that count toward current program
 #however, bampp and advanced special students need previous program courses
 
-current_semester = "1401"
+current_semester = "1408"
 
 qry_current_program_sem = '''SELECT reg.UID, reg.SEM 
 FROM reg 

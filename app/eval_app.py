@@ -9,6 +9,8 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from werkzeug import secure_filename
 import os
 
+from flask_mail import Mail, Message
+
 from contextlib import closing
 import audit_review_class as arc
 import audit_dicts as ad
@@ -26,13 +28,24 @@ UPLOAD_FOLDER = '../student'
 #test to see if ALLOWED EXTENSIONS takes a period prior to the extension
 ALLOWED_EXTENSIONS = set(['.docx', '.doc', '.txt', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.xlsx', '.xls'])
 
-
-
 # create the application
 app = Flask(__name__)
+mail = Mail(app)
 app.config.from_object(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+app.config['MAIL_SERVER'] = 'exch.mail.umd.edu'
+app.config['MAIL_PORT'] = 25
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_DEBUG'] = "app.debug"
+app.config['MAIL_USERNAME'] = "kdurril"
+app.config['MAIL_PASSWORD'] = "cJd2604322159"
+app.config['DEFAULT_MAIL_SENDER'] = 'exch.mail.umd.edu'
+
 #app.session_interface = ItsdangerousSessionInterface()
+
+
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -79,6 +92,11 @@ def query_db(query, args=(), one=False):
 def directory_entries():
     '''Landing page, navigate to specific student from here'''
     '''List for each specialization to identify students by program'''
+
+    uid_check = g.db.execute('SELECT UID FROM directory')
+    check = uid_check.fetchall()
+    check = [x[0] for x in check]
+
     if request.method == 'GET':
         uid_check = g.db.execute('SELECT UID FROM directory')
         check = uid_check.fetchall()
@@ -151,10 +169,14 @@ def directory_entries():
                             mepp_list=mepp_list)
 
     if request.method == 'POST':
-        
-        uid_dig = request.form['UID'][-9:]
 
-        return redirect(url_for('auditbyid', uid=uid_dig))
+        search_uid = request.form['UID'][-9:]
+
+        if search_uid in check:
+            uid_dig = request.form['UID'][-9:]
+            return redirect(url_for('auditbyid', uid=uid_dig))
+        else:
+            return redirect('/')
 
 @app.route('/<int:uid>', methods=['GET'])
 def auditbyid(uid):
@@ -231,6 +253,8 @@ def auditbyid(uid):
     review = arc.CourseReview(all_course)
 
     #use audit_dicts All_dict as a lookup from the major
+    if directory_list[0]['major'] == u'':
+        directory_list[0]['major'] = 'OTH'
     completed = review.specialization_complete(ad.All_dict[directory_list[0]['major']])
     #completed = [list(x) for x in completed]
     complete_course = [dict(Complete=list(row)) for row in completed if row != []]
@@ -241,7 +265,7 @@ def auditbyid(uid):
 
     #original return page is auditmpp.html
 
-    return render_template('auditmpp.html',\
+    output = render_template('auditmpp.html',\
         check = check,\
         specialization_list=specialization_list,\
         alt_spec_uri=alt_spec_uri,\
@@ -253,6 +277,9 @@ def auditbyid(uid):
         nongrad_list=nongrad_list,\
         ass_list=ass_list,\
         complete_course=complete_course)
+
+    
+    return output
 
 @app.route('/<user_id>/auditalt/<specialization_id>', methods=['GET'])
 def auditalt(user_id, specialization_id):
@@ -278,12 +305,14 @@ def auditalt(user_id, specialization_id):
         directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
         
         major = directory_list[0]['major']
+        if major == "":
+            major = "OTH"
         
         #Make list of links to alternative specializations
         alt_spec_uri = [dict(uri="/{0}/auditalt/{1}".format(user_id_txt, x['specialization']), specialization=x['specialization']) for x in specialization_list]
 
 
-        qry_current_program_sem = '''SELECT reg.UID, reg.SEM FROM reg, (SELECT UID, Secondary FROM reg WHERE Sem = "1401"
+        qry_current_program_sem = '''SELECT reg.UID, reg.SEM FROM reg, (SELECT UID, Secondary FROM reg WHERE Sem = "1408"
         ) as current_program WHERE reg.UID = current_program.UID AND reg.Secondary = current_program.Secondary
         '''
         qry_cp_alt = '''SELECT cp1.UID, cp1.Class, cp1.Credits, cp1.Grade, cp1.SEM 
@@ -302,7 +331,7 @@ def auditalt(user_id, specialization_id):
         #current semester courses
         qry_current_sem = '''SELECT p.UID, p.Class, p.Credits, p.Grade, p.Sem
                              FROM student AS p
-                             WHERE Sem = "1401" AND Class != "" AND p.UID = ? '''
+                             WHERE Sem = "1408" AND Class != "" AND p.UID = ? '''
         cur = g.db.execute(qry_current_sem, user_id)
         current_semester_list = [dict(UID=row[0], Class=row[1],\
          Credits=row[2], Grade=row[3], Sem=row[4]) for row in cur.fetchall()]
@@ -457,6 +486,8 @@ def advisingnote_edit(uid, note_id):
         inquiry_list = [dict(note_id=row[0], UID=row[1], student_inquiry=row[2],
         response=row[3], next_action_student=row[4], next_action_adviser=row[5], date_stamp=row[6]
         ) for row in cur.fetchall()]
+
+
     return render_template('student_notes_update.html',
         directory_list=directory_list,
         uid=uid,
@@ -492,6 +523,51 @@ def advisingnote_delete():
         g.db.commit()
         flash('Entry {0} was successfully deleted'.format(request.form['note_id']))
         return redirect(url_for('advisingnote', uid=request.form['UID']))
+
+@app.route('/advisingnote/email', methods=['POST'])
+def advisingnote_email():
+    if request.method == 'POST':
+        if not session.get('logged_in'):
+            abort(401)
+        
+            #General student info
+            cur = g.db.execute('SELECT UID, Last_name, first_name, email, major, program_code FROM directory WHERE program_code = "MAPO" AND UID = ?;', [uid])
+            directory_list = [dict(UID=row[0], Last_name=row[1], first_name=row[2], email=row[3], major=row[4], program_code=row[5]) for row in cur.fetchall()]
+            
+            #Session specific note
+            cur = g.db.execute('''SELECT ID, UID, student_inquiry, response, 
+                    next_action_student, next_action_adviser, date_stamp 
+                    FROM inquiry 
+                    WHERE ID =? 
+                    ORDER BY date_stamp desc;''', request.form['note_id'])
+            inquiry_list = [dict(note_id=row[0], UID=row[1], student_inquiry=row[2],
+                response=row[3], next_action_student=row[4], next_action_adviser=row[5], date_stamp=row[6]
+                ) for row in cur.fetchall()]
+
+            msg = Message()
+
+            msg.recipients = ["kdurril@umd.edu"]
+
+            msg.body = '''Dear {first_name}, \n from our meeting on {date}, please review: {next_steps} \n please alert me with quesitons'''
+            #.format(first_name=directory_list[0].first_name, date=inquiry_list[0].date_stamp, next_steps=inquiry_list[0].next_action_student)
+
+            #msg.html = render_template('student_notes_update_email.html', 
+            #                        directory_list=directory_list,
+            #                        uid=uid,
+            #                        note_id=note_id,
+            #                        inquiry_list=inquiry_list)
+            mail.send(msg)
+            uid = directory_list['UID']
+            file = open('''C:\Users\kdurril\Documents\sd_revise_2014_01_28\\'''+str(uid)+"_audit.html","w")
+            file.write(str(output))
+            file.close()
+
+
+            flash('Entry {0} was successfully sent'.format(request.form['note_id']))
+
+        return redirect(url_for('advisingnote', uid=request.form['UID']))
+
+
 
 #inquiry form
 @app.route('/<int:uid>/courserequest', methods=['GET', 'POST'])

@@ -3,6 +3,14 @@
 <div>
   {% if session.logged_in %}
   {% for entry in inquiry_list %}
+      <div>Review note: {{note_id}}</div>
+      <div>Date: {{ entry.date_stamp}}</div>
+      <div>Student Next Steps: {{ entry.next_action_student}}</div>
+      <div>Student Question: {{ entry.student_inquiry}}</div>
+      <div>Advisor Response: {{ entry.response }}</div>
+
+     
+
     <form action="{{ url_for('advisingnote_edit_send') }}" method=post class=advisingnote-edit>
       
       <div>Review note: {{note_id}}</div>
@@ -21,16 +29,6 @@
         <dd><input type=submit value=Update>
       </dl>
     </form>
-
-    <form action="{{url_for('advisingnote_email') }} " method=post class=advisingnote-email>
-      <dl>
-      <input type=hidden size=10 name=UID value="{{uid}}">
-      <input type=hidden size=10 name=note_id value="{{note_id}}">
-      
-      <dd><input type=submit value=Email>
-      </dl>
-
-    </form> 
 
     <form action="{{ url_for('advisingnote_delete') }}" method=post class=advisingnote-edit>
       <dl>

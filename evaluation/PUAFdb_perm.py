@@ -3,6 +3,7 @@
 import csv 
 import sqlite3
 import sys
+import codecs
 import replaceheader as rh
 
 rh.replaceheader()
@@ -47,7 +48,7 @@ qry_create_start = '''CREATE TABLE start (ID integer PRIMARY KEY autoincrement,
  P_Finish text, P_Graduate text, C_Start text, C_Finish text);'''
 curs.execute(qry_create_start)
 with open("../evaluation/db/student_startdate_tab.csv", "r+") as infile:
-      dr = csv.DictReader(infile, delimiter='\t')
+      dr = csv.DictReader(infile, delimiter= '\t')
       to_db = [(i['UID'], i['M_Start'], i['M_Finish'], i['M_Graduate'],\
       i['P_Start'], i['P_Finish'], i['P_Graduate'], i['C_Start'],\
       i['C_Finish']) for i in dr]
@@ -176,7 +177,7 @@ forFuture14 text,   forFuture15 text,   forFuture16 text);'''
 
 curs.execute(qry_create_directory)
 
-with open("../evaluation/db/directory_tab.csv", "r+") as infile:
+with codecs.open("../evaluation/db/directory_tab.csv", "r+", "UTF-8") as infile:
     dr = csv.DictReader(infile, delimiter = ',')
     to_db = [(i['Last_name'], i['first_name'], i['middle_name'], i['UID'],\
             i['Applicants_only_sem'], i['email'], i['birthdate'], i['major'],\
