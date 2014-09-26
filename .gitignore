@@ -5,8 +5,8 @@
 #No .pyc files
 *.pyc
 #This removes backend data
-#*.csv
-#*.db
+*.csv
+*.db
 
 rid.txt
 
