@@ -1,0 +1,10 @@
+#No files ending in "o" or "a"
+*.[oa]
+#No files ending in tilde
+*~
+#No .pyc files
+*.pyc
+
+#No virtual environment folder
+sd/
+evaluation/db/2013_11_22_201308

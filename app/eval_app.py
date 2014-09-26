@@ -20,7 +20,7 @@ import audit_sql as asql
 #import audit_dict_v1_3 as sp_audit
 
 DATABASE = '../evaluation/db/PUAFdb.db'
-DEBUG = True
+DEBUG = False
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -36,12 +36,12 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 app.config['MAIL_SERVER'] = 'exch.mail.umd.edu'
 app.config['MAIL_PORT'] = 25
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_DEBUG'] = "app.debug"
-app.config['MAIL_USERNAME'] = "kdurril"
-app.config['MAIL_PASSWORD'] = "cJd2604322159"
-app.config['DEFAULT_MAIL_SENDER'] = 'exch.mail.umd.edu'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_DEBUG'] = False
+app.config['MAIL_USERNAME'] = "kdurril@umd.edu"
+app.config['MAIL_PASSWORD'] = ""
+#app.config['DEFAULT_MAIL_SENDER'] = 'smtp.umd.edu'
 
 #app.session_interface = ItsdangerousSessionInterface()
 
@@ -173,7 +173,7 @@ def directory_entries():
         search_uid = request.form['UID'][-9:]
 
         if search_uid in check:
-            uid_dig = request.form['UID'][-9:]
+            
             return redirect(url_for('auditbyid', uid=uid_dig))
         else:
             return redirect('/')
@@ -548,7 +548,7 @@ def advisingnote_email():
 
             msg.recipients = ["kdurril@umd.edu"]
 
-            msg.body = '''Dear {first_name}, \n from our meeting on {date}, please review: {next_steps} \n please alert me with quesitons'''
+            msg.body = '''Dear Kenneth, \n from our meeting today, please review \n please alert me with quesitons'''
             #.format(first_name=directory_list[0].first_name, date=inquiry_list[0].date_stamp, next_steps=inquiry_list[0].next_action_student)
 
             #msg.html = render_template('student_notes_update_email.html', 
@@ -559,7 +559,7 @@ def advisingnote_email():
             mail.send(msg)
             uid = directory_list['UID']
             file = open('''C:\Users\kdurril\Documents\sd_revise_2014_01_28\\'''+str(uid)+"_audit.html","w")
-            file.write(str(output))
+            file.write("Khan")
             file.close()
 
 
