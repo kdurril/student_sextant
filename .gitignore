@@ -4,6 +4,9 @@
 *~
 #No .pyc files
 *.pyc
+#This removes backend data
+*.csv
+*.db
 
 #No virtual environment folder
 sd/
