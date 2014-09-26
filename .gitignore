@@ -8,6 +8,8 @@
 *.csv
 *.db
 
+rid.txt
+
 #No virtual environment folder
 sd/
 evaluation/db/2013_11_22_201308
