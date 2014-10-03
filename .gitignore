@@ -4,12 +4,16 @@
 *~
 #No .pyc files
 *.pyc
+
 #This removes backend data
 *.csv
 *.db
 
-rid.txt
+#No ipython notebook files
+#Might reconsider for documentation purposes
+*.ipynb
 
 #No virtual environment folder
 sd/
 evaluation/db/2013_11_22_201308
+extraction/IncomingHeader201308.txt

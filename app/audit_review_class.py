@@ -74,7 +74,7 @@ class CourseReview(list):
 
 
 def semrev(year_base, currentcredit, creditpersem, creditend):
-    '''count to expected completion semester'''
+    '''semester review to count to expected completion semester'''
     semlist = ['01', '05', '07', '08', '12']
     #currentcredit += creditpersem
     year = int(year_base[:4])

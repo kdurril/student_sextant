@@ -6,14 +6,18 @@
 
 
 ## program = {"Minreq": ##, "Project": "Yes/No"}
-MPP = {"Minreq": 48, "Project": 'Yes'}
-MPM = {"Minreq": 36, "Project": 'No'}
-PhD = {"Minreq": 24, "Project": 'No', "Qualifiers": 'Yes'} 
-MPPMBA = {"Minreq": 66, "Project": 'Yes'}
-BAMPP = {"Minreq": 48, "Project": 'Yes'}
-MPPJD = {"Minreq": 48, "Project": 'Yes'}
-CONS = {"Minreq": 60, "Project": 'Yes'}
-MEPP = {"Minreq": 39, "Project": 'Yes'}
+MAPO_credit = {"Minreq": 48, "Project": 'Yes'}
+MAMG_credit = {"Minreq": 36, "Project": 'No'}
+POSI_credit = {"Minreq": 24, "Project": 'No', "Qualifiers": 'Yes'} 
+BMPO_credit = {"Minreq": 66, "Project": 'Yes'}
+BAMPP_credit = {"Minreq": 48, "Project": 'Yes'}
+LMPO_credit = {"Minreq": 48, "Project": 'Yes'}
+PPCN_credit = {"Minreq": 60, "Project": 'No'}
+MEPP_credit = {"Minreq": 39, "Project": 'Yes'}
+
+credit_dict = {'MAPO': MAPO_credit, 'MAMG': MAMG_credit, 'POSI': POSI_credit,
+               'BMPO': BMPO_credit, 'LMPO': LMPO_credit, 'PPCN': PPCN_credit,
+               'MEPP': MEPP_credit}
 
 #Coursework requirements include two primary parts: core and specialization
 #both part have the same functionality: complete a minimum of listed courses
@@ -25,8 +29,8 @@ Micro = {"Course": ['PUAF640'], "MinReq": 1, "label": "MicroEcon",\
          "waiver": ['PUAF689B']}
 Macro_fin = {"Course": ['PUAF641', 'PUAF670'], "MinReq": 1,\
              "label": 'MacroEcon/Finance'}
-Macro = {"Course": ['PUAF641'], "MinReq": 1, "label": 'MacroEcon'}
-Fin = {"Course": ['PUAF641', 'PUAF670'], "MinReq": 1, "label": 'Finance'}
+Macro = {"Course": ['PUAF641'], "MinReq": 1, "label": 'Macro'}
+Fin = {"Course": ['PUAF670'], "MinReq": 1, "label": 'Finance'}
 Poly = {"Course": ['PUAF620', 'PUAF688A'], "MinReq": 1,\
           "label": 'Political, Ethical and Management Analysis'}
 Ethics = {"Course": ['PUAF650'], "MinReq": 1,\
@@ -167,15 +171,17 @@ All_dict = {'ENV': ENV, 'ENGY': ENGY, 'IDEV': IDEV, 'ISEP': ISEP,
             'EDUC': EDUC, 'HLTH': HLTH, 'OTH': OTH, 'ML': ML, "LMPO": LMPO, "MAPO": MAPO}
 
 
-#MEPP
-mepp_1 = {"Course":['PUAF740', 'PUAF741', 'PUAF745'], "MinReq": 3,\
+#PPCN
+ppcn_1 = {"Course":['PUAF740', 'PUAF741', 'PUAF745'], "MinReq": 3,\
          "label": "ENV Req 1"}
-mepp_polanlysis = {"Course": ['PUAF620', 'PUAF688A'], "MinReq": 1,\
+ppcn_polanlysis = {"Course": ['PUAF620', 'PUAF688A'], "MinReq": 1,\
           "label": 'Political, Ethical and Management Analysis'}
-mepp_ethics = {"Course": ['PUAF620', 'PUAF650', 'PUAF711', 'PUAF688A'], "MinReq": 3,\
+ppcn_ethics = {"Course": ['PUAF650'], "MinReq": 1,\
           "label": 'Political, Ethical and Management Analysis'}
-mepp_project = {"Course": ['PUAF790'], "MinReq": 1,\
+ppcn_project = {"Course": ['PUAF790'], "MinReq": 1,\
            "label": 'Project Course'}
+
+
 
 
 ## Check for fulfillments
