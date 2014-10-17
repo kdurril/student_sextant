@@ -30,22 +30,10 @@ ALLOWED_EXTENSIONS = set(['.docx', '.doc', '.txt', '.pdf', '.png', '.jpg', '.jpe
 
 # create the application
 app = Flask(__name__)
-mail = Mail(app)
 app.config.from_object(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-app.config['MAIL_SERVER'] = 'exch.mail.umd.edu'
-app.config['MAIL_PORT'] = 25
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_DEBUG'] = False
-app.config['MAIL_USERNAME'] = "kdurril@umd.edu"
-app.config['MAIL_PASSWORD'] = ""
-#app.config['DEFAULT_MAIL_SENDER'] = 'smtp.umd.edu'
-
 #app.session_interface = ItsdangerousSessionInterface()
-
-
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -204,7 +192,11 @@ def auditbyid(uid):
     #Get program min credit
     program_credit_min = ad.credit_dict[program_type]['Minreq']
     directory_list[0]['m_start'] = program_start[0]['m_start']
-    directory_list[0]['m_finish'] = list(arc.semrev("201408", totalcredit, ave_credit, program_credit_min))[-1]
+    directory_list[0]['m_finish'] = list(arc.semrev("201408", totalcredit, ave_credit, program_credit_min))
+    if len(directory_list[0]['m_finish']) < 1:
+        directory_list[0]['m_finish'] = list()
+    else:
+        directory_list[0]['m_finish'] = directory_list[0]['m_finish'][-1]
     major = directory_list[0]['major']
     
     #Make list of links to alternative specializations
