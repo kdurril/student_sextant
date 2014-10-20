@@ -35,11 +35,11 @@
 ## as well as those who have been
 ## in multiple programs at UMD (which includes those who have been undergrads).
 ## count of secondary or degree is 2 or greater
-## 107038661 for POSI, masters and non-PUAF masters
-## 108344945 for undergrad and masters
-## 109939539 for BAMPP
-## 109421515 for BAMPP and other masters program
-## 112738358 for MPP who left program
-## 112584269 for MPP traditional first year
-## 110728443 for MPP with a waiver of continuous registration and part time
-## 102720516 for MPM with spring start
+## POSI, masters and non-PUAF masters
+## undergrad and masters
+## BAMPP
+## BAMPP and other masters program
+## MPP who left program
+## MPP traditional first year
+## MPP with a waiver of continuous registration and part time
+## MPM with spring start
