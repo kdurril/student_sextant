@@ -90,6 +90,19 @@ curs.executemany('''INSERT INTO reg (UID, Sem, Fulltime_sis, Fulltime_our,
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?);''', to_db)
 conn.commit()
 
+#Create requirement table
+qry_create_requirements = '''CREATE TABLE IF NOT EXISTS 
+    requirements(ID integer PRIMARY KEY autoincrement, 
+    course_num text, requirement_type text, specialization text);'''
+curs.execute(qry_create_requirements)
+with open("../evaluation/db/ReqSets.txt", "r+") as infile:
+    dr = csv.DictReader(infile, delimiter = ',', quotechar='"')
+    to_db = [(i["CourseNumber"],i["Requirement_type"], i["Specialization"]) for i in dr]
+    
+curs.executemany('''INSERT INTO requirements (course_num,requirement_type,specialization) 
+    VALUES (?,?,?);''', to_db)
+conn.commit()
+
 #Create directory table
 qry_create_directory = '''CREATE TABLE directory (Last_name text,   
 first_name text,   middle_name text,
