@@ -5,7 +5,6 @@
 
 from itertools import chain
 
-
 #Requirements base is the traditional format for specializations
 requirement_base = '''SELECT student.UID
 FROM requirements INNER JOIN student ON requirements.course_num = student.Class
@@ -39,6 +38,51 @@ WHERE student.UID = ? requirements.Specialization = ? AND requirements.Requireme
 GROUP BY student.UID
 HAVING Count(student.Class) >= ? '''
 
+#Compound queries for linking program elements
+qry_two = 'SELECT a.UID FROM ( ' + requirement_base +\
+          ' ) as a INNER JOIN (' + requirement_base +\
+          ' ) as b ON a.UID = b.UID GROUP BY a.UID'
+
+qry_three = 'SELECT c.UID FROM (( ' + requirement_base +\
+          ' ) as a INNER JOIN (' + requirement_base +\
+          ' ) as b ON a.UID = b.UID) as c INNER JOIN ( '+ requirement_base +\
+          ') as d ON c.UID = d.UID GROUP BY c.UID'
+
+qry_four = 'SELECT e.UID FROM (' + qry_three +\
+          ') as e INNER JOIN ( ' + requirement_base +\
+          ') as f ON e.UID = f.UID GROUP BY e.UID'
+
+qry_five = 'SELECT g.UID FROM (' + qry_four +\
+          ') as g INNER JOIN ( ' + requirement_base +\
+          ') as h ON g.UID = h.UID GROUP BY g.UID'
+
+#Compound queires for with UID attribute for student
+qry_two_std = 'SELECT a.UID FROM ( ' + requirement_base_std +\
+          ' ) as a INNER JOIN (' + requirement_base_std +\
+          ' ) as b ON a.UID = b.UID GROUP BY a.UID'
+
+qry_three_std = 'SELECT c.UID FROM (( ' + requirement_base_std +\
+        ' ) as a INNER JOIN (' + requirement_base_std +\
+        ' ) as b ON a.UID = b.UID) as c INNER JOIN ( '+\
+          requirement_base_std +\
+        ') as d ON c.UID = d.UID GROUP BY c.UID'
+
+def attr_build(*reqs):
+    "build list of multiple requirements"
+    qry_args =[]
+    for req in reqs:
+        qry_args.extend(req)
+    return qry_args
+
+def attr_build_std(uid, *reqs):
+    "this function builds list for queries by student"
+    qry_args =[]
+    for req in reqs:
+        qry_args.append(uid)
+        qry_args.extend(req)
+    return qry_args
+
+
 def db_to_set(db_tuples):
     'create set from returned db tuples'
     'db_tuples should be single column vector'
@@ -50,9 +94,10 @@ def db_to_set(db_tuples):
 
 #adust for cursor name
 def multi_fetch(*args):
-	'add all requirements from a specialization, or multiple specializations'
+    'add all requirements from a specialization, or multiple specializations'
     reqs = [curs.execute(requirement_base, req).fetchall() for req in [x for x in args]]
     return reqs
+
 
 
 qry_env_1 = ("ENV", 1, 6)
