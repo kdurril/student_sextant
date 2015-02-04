@@ -1,259 +1,259 @@
-"ID","CourseNumber","CourseName","Requirement_type","Specialization","Credit","Sem","Req_subtype"
-1,"BUSI610","Introduction to Financial Account","1","MPP/MBA",2.00,,
-2,"BUSI611","Managerial Accounting","1","MPP/MBA",2.00,,
-3,"BUSI621","Technology Elective","1","MPP/MBA",2.00,,
-4,"BUSI622","Technology Elective","1","MPP/MBA",2.00,,
-5,"BUSI630","Data Models & Decisions","1","MPP/MBA",2.00,,
-6,"BUSI634","Operations Management","1","MPP/MBA",2.00,,
-7,"BUSI640","Financial Management","1","MPP/MBA",2.00,,
-8,"BUSI650","Marketing Management","1","MPP/MBA",2.00,,
-9,"BUSI662","Leadership and Teamwork","1","MPP/MBA",2.00,,
-10,"BUSI681","Managerial Economics and Public Policy","1","MPP/MBA",2.00,,
-11,"BUSI683","The Global Economic Environment","1","MPP/MBA",2.00,,
-12,"BUSI690","Strategic Management","1","MPP/MBA",2.00,,
-13,"EDPS615","Economics of Education","2","EDUC",3.00,,
-14,"PUAF698A","Selected Topics in Public Affairs: Growth Management: Land Use,  Enviromental and Community Planning","4","ENV",3.00,,
-18,"PUAF699Z","Energy Policy","4","ENV",3.00,,
-19,"PUAF698B","Selected Topics in Public Affairs: Restoration of the Chesapeake Bay","4","ENV",3.00,,
-21,"PUAF698W","Selected Topics in Public Affairs: Wildlife Conservation","4","ENV",3.00,,
-22,"PUAF798W","Readings in Public Policy: Climate Change Adaptation and Security","4","ENV",3.00,,
-23,"PUAF689V","Forecasting and Analyzing Political Violence ","4","IDEV",3.00,,
-24,"PUAF689V","Forecasting and Analyzing Political Violence ","4","ISEP",3.00,,
-25,"PUAF689P","Public Policy Topics: Strategic Philanthropy","4","NML",3.00,,
-26,"PUAF689Y","Theory, Practice, and New Paradigms in Nonprofit Fundraising","4","NML",3.00,,
-29,"PUAF610","Quantitative Methods in Policy Analysis","1","FAM",3.00,,"Stat"
-31,"PUAF610","Quantitative Methods in Policy Analysis","1","ENV",3.00,,"Stat"
-33,"PUAF610","Quantitative Methods in Policy Analysis","1","IDEV",3.00,,"Stat"
-34,"PUAF610","Quantitative Methods in Policy Analysis","1","ISEP",3.00,,"Stat"
-35,"PUAF610","Quantitative Methods in Policy Analysis","1","ML",3.00,,"Stat"
-36,"PUAF610","Quantitative Methods in Policy Analysis","1","PSFM",3.00,,"Stat"
-37,"PUAF610","Quantitative Methods in Policy Analysis","1","SOC",3.00,,"Stat"
-38,"PUAF611","Quantitative Analysis of Policy Issues","4","FAM",3.00,,
-40,"PUAF611","Quantitative Analysis of Policy Issues","4","ENV",3.00,,
-42,"PUAF611","Quantitative Analysis of Policy Issues","4","IDEV",3.00,,
-43,"PUAF611","Quantitative Analysis of Policy Issues","4","ISEP",3.00,,
-46,"PUAF611","Quantitative Analysis of Policy Issues","2","SOC",3.00,,
-47,"PUAF620","Political Analysis","1","FAM",3.00,,"Political"
-49,"PUAF620","Political Analysis","1","ENV",3.00,,"Political"
-51,"PUAF620","Political Analysis","1","IDEV",3.00,,"Political"
-52,"PUAF620","Political Analysis","1","ISEP",3.00,,"Political"
-53,"PUAF620","Political Analysis","1","ML",3.00,,"Political"
-54,"PUAF620","Political Analysis","1","PSFM",3.00,,"Political"
-55,"PUAF620","Political Analysis","1","SOC",3.00,,"Political"
-56,"PUAF640","Microeconomic Theory and Policy Analysis","1","FAM",3.00,,"Micro"
-58,"PUAF640","Microeconomic Theory and Policy Analysis","1","ENV",3.00,,"Micro"
-60,"PUAF640","Microeconomic Theory and Policy Analysis","1","IDEV",3.00,,"Micro"
-61,"PUAF640","Microeconomic Theory and Policy Analysis","1","ISEP",3.00,,"Micro"
-62,"PUAF640","Microeconomic Theory and Policy Analysis","1","ML",3.00,,"Micro"
-63,"PUAF640","Microeconomic Theory and Policy Analysis","1","PSFM",3.00,,"Micro"
-64,"PUAF640","Microeconomic Theory and Policy Analysis","1","SOC",3.00,,"Micro"
-65,"PUAF641","Macroeconomics and Policy Analysis","1","ENV",3.00,,"Macro/Finance"
-66,"PUAF641","Macroeconomics and Policy Analysis","1","IDEV",3.00,,"Macro"
-67,"PUAF641","Macroeconomics and Policy Analysis","1","ISEP",3.00,,"Macro"
-68,"PUAF650","Moral Dimensions of Public Policy","1","FAM",3.00,,"Ethics"
-70,"PUAF650","Moral Dimensions of Public Policy","1","ENV",3.00,,"Ethics"
-72,"PUAF650","Moral Dimensions of Public Policy","1","IDEV",3.00,,"Ethics"
-73,"PUAF650","Moral Dimensions of Public Policy","1","ISEP",3.00,,"Ethics"
-74,"PUAF650","Moral Dimensions of Public Policy","1","ML",3.00,,"Ethics"
-75,"PUAF650","Moral Dimensions of Public Policy","1","PSFM",3.00,,"Ethics"
-76,"PUAF650","Moral Dimensions of Public Policy","1","SOC",3.00,,"Ethics"
-77,"PUAF660","Policy Workshop","3","ENV",3.00,,
-78,"PUAF670","Public Financial Management","1","FAM",3.00,,"Finance"
-80,"PUAF670","Public Financial Management","1","ENV",3.00,,"Micro/Finance"
-82,"PUAF670","Public Financial Management","1","ML",3.00,,"Finance"
-83,"PUAF670","Public Financial Management","1","PSFM",3.00,,"Finance"
-84,"PUAF670","Public Financial Management","1","SOC",3.00,,"Micro/Finance"
-85,"PUAF688P","Health Law and Ethics","4","HLTH",3.00,,
-86,"PUAF689A","Acquisition: Concepts and Management","2","FAM",3.00,,
-87,"PUAF689F","Current Issues in Federal Acquisition","2","FAM",3.00,,
-88,"PUAF698G","Government Contracting and Pricing","2","FAM",3.00,,
-89,"PUAF692","Leadership Principles and Practices","4","FAM",3.00,,
-90,"PUAF692","Leadership Principles and Practices","4","ML",3.00,,"Management"
-91,"PUAF692","Leadership Principles and Practices","5","PSFM",3.00,,
-92,"PUAF698D","Urban Policy","4","SOC",3.00,,
-93,"PUAF698F","Crime Control","4","SOC",3.00,,
-94,"PUAF698G","Real Estate Development","4","SOC",3.00,,
-95,"PUAF698I","Indonesia: Social-Ecological Systems, Environmental Policy, and Sustainable Development in Indonesia","4","ENV",3.00,,
-96,"PUAF698I","Indonesia: Social-Ecological Systems, Environmental Policy, and Sustainable Development in Indonesia","4","IDEV",3.00,,
-97,"PUAF698I","Indonesia: Social-Ecological Systems, Environmental Policy, and Sustainable Development in Indonesia","4","ISEP",3.00,,
-98,"PUAF698K","Comparative Health Policy","4","HLTH",3.00,,
-99,"PUAF698L","International Environmental Agreements","4","ENV",3.00,,
-100,"PUAF698N","Intelligence","4","ISEP",3.00,,
-101,"PUAF698O","Ethics, Development and Foreign Aid","4","IDEV",3.00,,
-102,"PUAF698O","Ethics, Development and Foreign Aid","4","ISEP",3.00,,
-103,"PUAF698Q","Democracy and Democratization","4","IDEV",3.00,,
-104,"PUAF698R","Development Challenges","2","IDEV",3.00,,
-108,"PUAF689B","Public Policy Topics: Advanced Microeconomics & Policy","4","FAM",3.00,,
-113,"PUAF689B","Public Policy Topics: Advanced Microeconomics & Policy","4","ENV",3.00,,
-123,"PUAF698X","Development and Globalization","4","ISEP",3.00,,
-124,"PUAF689B","Public Policy Topics: Advanced Microeconomics & Policy","4","ISEP",3.00,,
-126,"PUAF689B","Public Policy Topics: Advanced Microeconomics & Policy","1","ML",3.00,,"Micro"
-128,"PUAF698Q","Information Policy","4","FAM",3.00,,
-129,"PUAF698Q","Information Policy","4","ML",3.00,,"Management"
-130,"PUAF698Q","Information Policy","5","PSFM",3.00,,
-133,"PUAF689B","Public Policy Topics: Advanced Microeconomics & Policy","4","SOC",3.00,,
-135,"PUAF698x","Poverty Measurement and Alleviation","4","SOC",3.00,,
-136,"PUAF699C","Results and Performance Results Accountability","5","ML",3.00,,"Management"
-137,"PUAF699C","Results and Performance Results Accountability","4","FAM",3.00,,
-138,"PUAF699C","Results and Performance Results Accountability","5","PSFM",3.00,,
-139,"PUAF784","Disease, Disasters and Development","4","IDEV",3.00,,
-141,"PUAF699D","Disease, Disasters and Development","4","ISEP",3.00,,
-142,"PUAF699E","Financial Systems and Control","4","FAM",3.00,,
-143,"PUAF699E","Financial Systems and Control","5","ML",3.00,,"Finance/Acquistion"
-144,"PUAF699E","Financial Systems and Controls","4","PSFM",3.00,,
-145,"PUAF699K","Civil Conflict","4","IDEV",3.00,,
-146,"PUAF699K","Civil Conflict","4","ISEP",3.00,,
-147,"PUAF699L","Leading and Motivating People","4","FAM",3.00,,
-148,"PUAF699L","Leading and Motivating People","4","ML",3.00,,"Management"
-149,"PUAF699L","Leading and Motivating People","5","PSFM",3.00,,
-150,"PUAF699Q","Demography","4","SOC",3.00,,
-151,"PUAF699Y","Development, Trade and Labor","4","IDEV",3.00,,
-152,"PUAF699Y","Development, Trade and Labor","4","ISEP",3.00,,
-153,"PUAF711","Public Management and Leadership","1","FAM",3.00,,"Management"
-154,"PUAF711","Public Management and Leadership","1","ENV",3.00,,"Management"
-155,"PUAF711","Public Management and Leadership","1","IDEV",3.00,,"Management"
-156,"PUAF711","Public Management and Leadership","1","ISEP",3.00,,"Management"
-157,"PUAF711","Public Management and Leadership","1","ML",3.00,,"Management"
-158,"PUAF711","Public Management and Leadership","1","PSFM",3.00,,"Management"
-159,"PUAF711","Public Management and Leadership","1","SOC",3.00,,"Management"
-160,"PUAF712","Analysis of Fiscal Conditions","4","FAM",3.00,,
-161,"PUAF712","Analysis of Fiscal Conditions","5","ML",3.00,,"Finance/Acquistion"
-162,"PUAF712","Analysis of Fiscal Conditions","4","PSFM",3.00,,
-163,"PUAF715","Government and Non-Profit Accounting","4","PSFM",3.00,,
-164,"PUAF715","Government and Non-Profit Accounting","4","FAM",3.00,,
-165,"PUAF715","Government and Non-Profit Accounting","5","ML",3.00,,"Finance/Acquistion"
-166,"PUAF716","State and Local Government Budgeting","4","FAM",3.00,,
-167,"PUAF716","State and Local Government Budgeting","5","ML",3.00,,"Finance/Acquistion"
-168,"PUAF716","State and Local Government Budgeting","2","PSFM",3.00,,
-169,"PUAF717","Federal Budgeting","4","FAM",3.00,,
-170,"PUAF717","Federal Budgeting","5","ML",3.00,,"Finance/Acquistion"
-171,"PUAF717","Federal Budgeting","2","PSFM",3.00,,
-172,"PUAF720","International Security Policy","4","IDEV",3.00,,
-173,"PUAF720","International Security Policy","2","ISEP",3.00,,
-174,"PUAF732","Policy and Politics of Education Reform","2","EDUC",3.00,,
-175,"PUAF732","Education Reform","4","SOC",3.00,,
-178,"PUAF734","Foundations of Social Policy","2","SOC",3.00,,
-179,"PUAF735","Health Policy","2","HLTH",3.00,,
-180,"PUAF735","Health Policy","4","SOC",3.00,,
-181,"PUAF737","Strategies for Equality","4","SOC",3.00,,
-182,"PUAF740","Public Policy & Environment","2","ENV",3.00,,
-183,"PUAF741","Global Environmental Problems","2","ENV",3.00,,
-184,"PUAF742","Environmental Ethics","4","ENV",3.00,,
-185,"PUAF744","Environmental and Development","4","ENV",3.00,,
-186,"PUAF745","Human Health and Environmental Policy","2","ENV",3.00,,
-187,"PUAF752","Managing Differences: Resolving Conflict and Negotiating Agreements","4","FAM",3.00,,
-188,"PUAF752","Managing Differences: Resolving Conflict and Negotiating Agreements","4","ML",3.00,,"Management"
-189,"PUAF752","Managing Differences: Resolving Conflict and Negotiating Agreements","5","PSFM",3.00,,
-190,"PUAF753","Advanced Negotiations","4","FAM",3.00,,
-191,"PUAF753","Advanced Negotiations","4","ML",3.00,,"Management"
-192,"PUAF753","Advanced Negotiations","5","PSFM",3.00,,
-193,"PUAF770","Housing Policy","4","SOC",3.00,,
-194,"PUAF780","The American Foreign Policy-Making Process","4","IDEV",3.00,,
-195,"PUAF780","The American Foreign Policy-Making Process","2","ISEP",3.00,,
-196,"PUAF781","International Economic Policy","2","IDEV",3.00,,
-197,"PUAF781","International Economic Policy","2","ISEP",3.00,,
-198,"PUAF782","International Development Economics","2","IDEV",3.00,,
-199,"PUAF782","International Development Economics","4","ISEP",3.00,,
-200,"PUAF790","MF&L Project Course","3","FAM",3.00,,
-201,"PUAF790","Project Course","3","ENV",3.00,,
-202,"PUAF790","Social Policy Project Course","3","IDEV",3.00,,
-203,"PUAF790","Social Policy Project Course","3","ISEP",3.00,,
-204,"PUAF790","MF&L Project Course","3","ML",3.00,,
-205,"PUAF790","MF&L Project Course","3","PSFM",3.00,,
-206,"PUAF790","Social Policy Project Course","3","SOC",3.00,,
-207,"PUAF798C","International Law and International Institutions","4","IDEV",3.00,,
-208,"PUAF798C","International Law and International Institutions","4","ISEP",3.00,,
-211,"PUAF798E","Program Evaluation and Cost-Benefit Analysis","4","IDEV",3.00,,
-212,"PUAF798E","Program Evaluation and Cost-Benefit Analysis","4","ISEP",3.00,,
-213,"PUAF689E","Program Evaluation and Cost-Benefit Analysis","2","SOC",3.00,,
-214,"PUAF798G","Health Economics and Analysis","4","HLTH",3.00,,
-215,"PUAF798G","Health Economics and Analysis","4","SOC",3.00,,
-216,"PUAF798Q","Ethics of War and Conflict","4","IDEV",3.00,,
-217,"PUAF98Q","Ethics of War and Conflict","4","ISEP",3.00,,
-218,"PUAF798T","Sustainable Development, Democracy, and Human Rights in Peru","4","ENV",3.00,,
-219,"PUAF798T","Morocco: Political and Social Development","4","IDEV",3.00,,
-220,"PUAF798T","Morocco: Political and Social Development","4","ISEP",3.00,,
-221,"PUAF798V","Tax Policy","4","FAM",3.00,,
-222,"PUAF798V","Tax Policy","5","ML",3.00,,"Finance/Acquistion"
-223,"PUAF798V","Tax Policy","4","PSFM",3.00,,
-224,"PUAF798Y","Nonprofit Management and Leadership","4","FAM",3.00,,
-225,"PUAF798Y","Nonprofit Management and Leadership","4","ML",3.00,,"Management"
-226,"PUAF798Y","Nonprofit Management and Leadership","2","NML",3.00,,
-227,"PUAF798Y","Nonprofit Management and Leadership","5","PSFM",3.00,,
-228,"PUAF688F","Contemporary and Comparative Budget Practices","2","PSFM",3.00,,
-233,"PUAF689D","Public Policy Topics: Social Entrepreneurship","4","NML",3.00,,
-234,"PUAF698A","Selected Topics in Public Affairs: Poverty Measurement and Alleviation","4","SOC",3.00,,
-235,"PUAF698V","Managing Social Services","4","SOC",3.00,,
-238,"PUAF770","Seminar in Housing and Community Development Strategies","4","SOC",3.00,,
-243,"PUAF798E","Program Evaluation and Cost-Benefit Analysis","4","SOC",3.00,,
-249,"PUAF698W","Wildlife Conservation","4","ENV",3.00,,
-251,"PUAF743","Environmental Economics","4","ENV",3.00,,
-252,"PUAF746","Dynamic Modeling","4","ENV",3.00,,
-253,"PUAF798L","Environmental Law & Finance","4","ENV",3.00,,
-258,"PUAF798F","Environmental Finance Strategies","4","ENV",3.00,,
-259,"PUAF798J","Contemporary Water Resource Management","4","ENV",3.00,,
-260,"PUAF798K","Climate Science & Policy","4","ENV",3.00,,
-261,"PUAF798N","Energy Economics","4","ENV",3.00,,
-262,"PUAF798O","Energy Security","4","ENV",3.00,,
-263,"PUAF798C","Selected Topics in Public Affairs: Intelligence, Policy Making and Politics","4","ISEP",3.00,,
-264,"PUAF699V","Selected Topics Public Policy: Homeland Security","4","ISEP",3.00,,
-265,"PUAF699K","Selected Topics Public Policy: Civil Conflict and Terrorism","4","ISEP",3.00,,
-274,"PUAF699J","Selected Topics Public Policy: Pathways to Development","2","IDEV",3.00,,
-275,"PUAF699I","Inequality and Development","4","SOC",3.00,,
-276,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","ENV",3.00,,"Political"
-4416,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","FAM",3.00,,"Political"
-4417,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","ML",3.00,,"Political"
-4418,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","PSFM",3.00,,"Political"
-4419,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","IDEV",3.00,,"Political"
-4420,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","ISEP",3.00,,"Political"
-4421,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","SOC",3.00,,"Political"
-4424,"PUAF620","Political Analysis","1","MEPP",3.00,,"Political"
-4425,"PUAF650","Moral Dimensions of Public Policy","1","MEPP",3.00,,"Ethics"
-4426,"PUAF640","Microeconomic Theory and Policy Analysis","1","MEPP",3.00,,"Micro"
-4427,"PUAF711","Public Management and Leadership","1","MEPP",3.00,,"Management/Finance"
-4428,"PUAF670","Public Financial Management","1","MEPP",3.00,,"Management/Finance"
-4429,"ENPP610","MEPP Capstone course","3","MEPP",3.00,,
-4431,"PUAF689X","Public Policy Topics: Performance Management;","2","ML",3.00,,
-4432,"PUAF689Z","Public Policy Topics: Strategic Management for NonProfit and Public Organizations;","4","NML",3.00,,
-4434,"PUAF798M","Readings in Public Policy: Arms Control and Non-Proliferation Policy;","4","ISEP",3.00,,
-4435,"PUAF700","U.S. Trade: Policy and Politics;","4","ISEP",3.00,,
-4437,"PUAF688P","Topics in Public Policy: Health Law and Ethics;","4","SOC",3.00,,
-4438,"PUAF744","Environment and Development;","4","IDEV",3.00,,
-4439,"PUAF798D","Readings in Public Policy: Defense Policy","4","ISEP",3.00,,
-4442,"PUAF698T","Networks: Leading and Managing Across Sectors","2","ML",3.00,,
-4444,"PUAF699Z","Energy Policy","2","ENGY",,,
-4447,"ENPP611",,"Practicum","MEPP",,,
-4448,"PUAF688F","Financial Management for Nonprofit Organizations","2","NML",,,
-4449,"PUAF790","Project Course","3","NML",,,
-4450,"PUAF610","Quantitative Methods in Policy Analysis","1","NML",,,"Stat"
-4451,"PUAF620","Political Analysis","1","NML",,,"Political"
-4452,"PUAF640","Microeconomic Theory and Policy Analysis","1","NML",,,"Micro"
-4453,"PUAF650","Moral Dimensions of Public Policy","1","NML",,,"Ethics"
-4454,"PUAF670","Public Financial Management","1","NML",,,"Finance"
-4455,"PUAF688A","Topics in Public Policy: Comparative Political Institutions","1","NML",,,"Political"
-4456,"PUAF711","Public Management and Leadership","1","NML",,,"Management"
-4457,"PUAF611","Quantitative Analysis of Policy Issues","1","FAM",,,"Stat"
-4459,"PUAF611","Quantitative Analysis of Policy Issues","1","ENV",,,"Stat"
-4461,"PUAF611","Quantitative Analysis of Policy Issues","1","IDEV",,,"Stat"
-4462,"PUAF611","Quantitative Analysis of Policy Issues","1","ISEP",,,"Stat"
-4463,"PUAF611","Quantitative Analysis of Policy Issues","1","ML",,,"Stat"
-4464,"PUAF611","Quantitative Analysis of Policy Issues","1","PSFM",,,"Stat"
-4465,"PUAF611","Quantitative Analysis of Policy Issues","1","SOC",,,"Stat"
-4466,"PUAF611","Quantitative Analysis of Policy Issues","1","NML",,,"Stat"
-4468,"PUAF641","Macroeconomics and Policy Analysis","1","SOC",,,"Macro/Finance"
-4471,"PUAF698Z","Strategic Management for Nonprofit & Public Organizations","5","NML",,,
-4472,"PUAF689P","Strategic Philanthropy","5","NML",,,
-4473,"PUAF689Y","Theory, Practice, and New Paradims in Nonprofit Fundraising","5","NML",,,
-4474,"PUAF689D","Public Policy Topics: Social Entrepreneurship","5","NML",,,
-4475,"PUAF698P","Issues in Information Policy and Technology","4","ML",,,"Management"
-4476,"PUAF798N","Readings in Public Policy; Energy Economics","2","ENGY",,,
-4477,"PUAF798O","Energy Security","2","ENGY",,,
-4481,"PUAF698G",,"5","ML",,,
-4482,"PUAF689A",,"5","ML",,,
-4483,"PUAF689F",,"5","ML",,,
-4484,"PUAF698P","Issues in Information Policy","5","PSFM",,,
-4485,"PUAF698T","Networks: Leading and Managing Across Sectors","5","PSFM",,,
-4486,"PUAF689X","Performance Management","5","PSFM",,,
-4487,"PUAF689A",,"5","PSFM",,,
-4488,"PUAF698G",,"5","PSFM",,,
-4489,"PUAF689F",,"5","PSFM",,,
+ID	CourseNumber	Requirement_type	Specialization	Req_subtype
+1	BUSI610	1	MPP/MBA	
+2	BUSI611	1	MPP/MBA	
+3	BUSI621	1	MPP/MBA	
+4	BUSI622	1	MPP/MBA	
+5	BUSI630	1	MPP/MBA	
+6	BUSI634	1	MPP/MBA	
+7	BUSI640	1	MPP/MBA	
+8	BUSI650	1	MPP/MBA	
+9	BUSI662	1	MPP/MBA	
+10	BUSI681	1	MPP/MBA	
+11	BUSI683	1	MPP/MBA	
+12	BUSI690	1	MPP/MBA	
+13	EDPS615	2	EDUC	
+14	PUAF698A	4	ENV	
+18	PUAF699Z	4	ENV	
+19	PUAF698B	4	ENV	
+21	PUAF698W	4	ENV	
+22	PUAF798W	4	ENV	
+23	PUAF689V	4	IDEV	
+24	PUAF689V	4	ISEP	
+25	PUAF689P	4	NML	
+26	PUAF689Y	4	NML	
+29	PUAF610	1	FAM	Stat
+31	PUAF610	1	ENV	Stat
+33	PUAF610	1	IDEV	Stat
+34	PUAF610	1	ISEP	Stat
+35	PUAF610	1	ML	Stat
+36	PUAF610	1	PSFM	Stat
+37	PUAF610	1	SOC	Stat
+38	PUAF611	4	FAM	
+40	PUAF611	4	ENV	
+42	PUAF611	4	IDEV	
+43	PUAF611	4	ISEP	
+46	PUAF611	2	SOC	
+47	PUAF620	1	FAM	Political
+49	PUAF620	1	ENV	Political
+51	PUAF620	1	IDEV	Political
+52	PUAF620	1	ISEP	Political
+53	PUAF620	1	ML	Political
+54	PUAF620	1	PSFM	Political
+55	PUAF620	1	SOC	Political
+56	PUAF640	1	FAM	Micro
+58	PUAF640	1	ENV	Micro
+60	PUAF640	1	IDEV	Micro
+61	PUAF640	1	ISEP	Micro
+62	PUAF640	1	ML	Micro
+63	PUAF640	1	PSFM	Micro
+64	PUAF640	1	SOC	Micro
+65	PUAF641	1	ENV	Macro/Finance
+66	PUAF641	1	IDEV	Macro
+67	PUAF641	1	ISEP	Macro
+68	PUAF650	1	FAM	Ethics
+70	PUAF650	1	ENV	Ethics
+72	PUAF650	1	IDEV	Ethics
+73	PUAF650	1	ISEP	Ethics
+74	PUAF650	1	ML	Ethics
+75	PUAF650	1	PSFM	Ethics
+76	PUAF650	1	SOC	Ethics
+77	PUAF660	3	ENV	
+78	PUAF670	1	FAM	Finance
+80	PUAF670	1	ENV	Micro/Finance
+82	PUAF670	1	ML	Finance
+83	PUAF670	1	PSFM	Finance
+84	PUAF670	1	SOC	Micro/Finance
+85	PUAF688P	4	HLTH	
+86	PUAF689A	2	FAM	
+87	PUAF689F	2	FAM	
+88	PUAF698G	2	FAM	
+89	PUAF692	4	FAM	
+90	PUAF692	4	ML	Management
+91	PUAF692	5	PSFM	
+92	PUAF698D	4	SOC	
+93	PUAF698F	4	SOC	
+94	PUAF698G	4	SOC	
+95	PUAF698I	4	ENV	
+96	PUAF698I	4	IDEV	
+97	PUAF698I	4	ISEP	
+98	PUAF698K	4	HLTH	
+99	PUAF698L	4	ENV	
+100	PUAF698N	4	ISEP	
+101	PUAF698O	4	IDEV	
+102	PUAF698O	4	ISEP	
+103	PUAF698Q	4	IDEV	
+104	PUAF698R	2	IDEV	
+108	PUAF689B	4	FAM	
+113	PUAF689B	4	ENV	
+123	PUAF698X	4	ISEP	
+124	PUAF689B	4	ISEP	
+126	PUAF689B	1	ML	Micro
+128	PUAF698Q	4	FAM	
+129	PUAF698Q	4	ML	Management
+130	PUAF698Q	5	PSFM	
+133	PUAF689B	4	SOC	
+135	PUAF698x	4	SOC	
+136	PUAF699C	5	ML	Management
+137	PUAF699C	4	FAM	
+138	PUAF699C	5	PSFM	
+139	PUAF784	4	IDEV	
+141	PUAF699D	4	ISEP	
+142	PUAF699E	4	FAM	
+143	PUAF699E	5	ML	Finance/Acquistion
+144	PUAF699E	4	PSFM	
+145	PUAF699K	4	IDEV	
+146	PUAF699K	4	ISEP	
+147	PUAF699L	4	FAM	
+148	PUAF699L	4	ML	Management
+149	PUAF699L	5	PSFM	
+150	PUAF699Q	4	SOC	
+151	PUAF699Y	4	IDEV	
+152	PUAF699Y	4	ISEP	
+153	PUAF711	1	FAM	Management
+154	PUAF711	1	ENV	Management
+155	PUAF711	1	IDEV	Management
+156	PUAF711	1	ISEP	Management
+157	PUAF711	1	ML	Management
+158	PUAF711	1	PSFM	Management
+159	PUAF711	1	SOC	Management
+160	PUAF712	4	FAM	
+161	PUAF712	5	ML	Finance/Acquistion
+162	PUAF712	4	PSFM	
+163	PUAF715	4	PSFM	
+164	PUAF715	4	FAM	
+165	PUAF715	5	ML	Finance/Acquistion
+166	PUAF716	4	FAM	
+167	PUAF716	5	ML	Finance/Acquistion
+168	PUAF716	2	PSFM	
+169	PUAF717	4	FAM	
+170	PUAF717	5	ML	Finance/Acquistion
+171	PUAF717	2	PSFM	
+172	PUAF720	4	IDEV	
+173	PUAF720	2	ISEP	
+174	PUAF732	2	EDUC	
+175	PUAF732	4	SOC	
+178	PUAF734	2	SOC	
+179	PUAF735	2	HLTH	
+180	PUAF735	4	SOC	
+181	PUAF737	4	SOC	
+182	PUAF740	2	ENV	
+183	PUAF741	2	ENV	
+184	PUAF742	4	ENV	
+185	PUAF744	4	ENV	
+186	PUAF745	2	ENV	
+187	PUAF752	4	FAM	
+188	PUAF752	4	ML	Management
+189	PUAF752	5	PSFM	
+190	PUAF753	4	FAM	
+191	PUAF753	4	ML	Management
+192	PUAF753	5	PSFM	
+193	PUAF770	4	SOC	
+194	PUAF780	4	IDEV	
+195	PUAF780	2	ISEP	
+196	PUAF781	2	IDEV	
+197	PUAF781	2	ISEP	
+198	PUAF782	2	IDEV	
+199	PUAF782	4	ISEP	
+200	PUAF790	3	FAM	
+201	PUAF790	3	ENV	
+202	PUAF790	3	IDEV	
+203	PUAF790	3	ISEP	
+204	PUAF790	3	ML	
+205	PUAF790	3	PSFM	
+206	PUAF790	3	SOC	
+207	PUAF798C	4	IDEV	
+208	PUAF798C	4	ISEP	
+211	PUAF798E	4	IDEV	
+212	PUAF798E	4	ISEP	
+213	PUAF689E	2	SOC	
+214	PUAF798G	4	HLTH	
+215	PUAF798G	4	SOC	
+216	PUAF798Q	4	IDEV	
+217	PUAF98Q	4	ISEP	
+218	PUAF798T	4	ENV	
+219	PUAF798T	4	IDEV	
+220	PUAF798T	4	ISEP	
+221	PUAF798V	4	FAM	
+222	PUAF798V	5	ML	Finance/Acquistion
+223	PUAF798V	4	PSFM	
+224	PUAF798Y	4	FAM	
+225	PUAF798Y	4	ML	Management
+226	PUAF798Y	2	NML	
+227	PUAF798Y	5	PSFM	
+228	PUAF688F	2	PSFM	
+233	PUAF689D	4	NML	
+234	PUAF698A	4	SOC	
+235	PUAF698V	4	SOC	
+238	PUAF770	4	SOC	
+243	PUAF798E	4	SOC	
+249	PUAF698W	4	ENV	
+251	PUAF743	4	ENV	
+252	PUAF746	4	ENV	
+253	PUAF798L	4	ENV	
+258	PUAF798F	4	ENV	
+259	PUAF798J	4	ENV	
+260	PUAF798K	4	ENV	
+261	PUAF798N	4	ENV	
+262	PUAF798O	4	ENV	
+263	PUAF798C	4	ISEP	
+264	PUAF699V	4	ISEP	
+265	PUAF699K	4	ISEP	
+274	PUAF699J	2	IDEV	
+275	PUAF699I	4	SOC	
+276	PUAF688A	1	ENV	Political
+4416	PUAF688A	1	FAM	Political
+4417	PUAF688A	1	ML	Political
+4418	PUAF688A	1	PSFM	Political
+4419	PUAF688A	1	IDEV	Political
+4420	PUAF688A	1	ISEP	Political
+4421	PUAF688A	1	SOC	Political
+4424	PUAF620	1	MEPP	Political
+4425	PUAF650	1	MEPP	Ethics
+4426	PUAF640	1	MEPP	Micro
+4427	PUAF711	1	MEPP	Management/Finance
+4428	PUAF670	1	MEPP	Management/Finance
+4429	ENPP610	3	MEPP	
+4431	PUAF689X	2	ML	
+4432	PUAF689Z	4	NML	
+4434	PUAF798M	4	ISEP	
+4435	PUAF700	4	ISEP	
+4437	PUAF688P	4	SOC	
+4438	PUAF744	4	IDEV	
+4439	PUAF798D	4	ISEP	
+4442	PUAF698T	2	ML	
+4444	PUAF699Z	2	ENGY	
+4447	ENPP611	Practicum	MEPP	
+4448	PUAF688F	2	NML	
+4449	PUAF790	3	NML	
+4450	PUAF610	1	NML	Stat
+4451	PUAF620	1	NML	Political
+4452	PUAF640	1	NML	Micro
+4453	PUAF650	1	NML	Ethics
+4454	PUAF670	1	NML	Finance
+4455	PUAF688A	1	NML	Political
+4456	PUAF711	1	NML	Management
+4457	PUAF611	1	FAM	Stat
+4459	PUAF611	1	ENV	Stat
+4461	PUAF611	1	IDEV	Stat
+4462	PUAF611	1	ISEP	Stat
+4463	PUAF611	1	ML	Stat
+4464	PUAF611	1	PSFM	Stat
+4465	PUAF611	1	SOC	Stat
+4466	PUAF611	1	NML	Stat
+4468	PUAF641	1	SOC	Macro/Finance
+4471	PUAF698Z	5	NML	
+4472	PUAF689P	5	NML	
+4473	PUAF689Y	5	NML	
+4474	PUAF689D	5	NML	
+4475	PUAF698P	4	ML	Management
+4476	PUAF798N	2	ENGY	
+4477	PUAF798O	2	ENGY	
+4481	PUAF698G	5	ML	
+4482	PUAF689A	5	ML	
+4483	PUAF689F	5	ML	
+4484	PUAF698P	5	PSFM	
+4485	PUAF698T	5	PSFM	
+4486	PUAF689X	5	PSFM	
+4487	PUAF689A	5	PSFM	
+4488	PUAF698G	5	PSFM	
+4489	PUAF689F	5	PSFM	

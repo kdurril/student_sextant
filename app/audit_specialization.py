@@ -43,9 +43,8 @@ qry_two = 'SELECT a.UID FROM ( ' + requirement_base +\
           ' ) as a INNER JOIN (' + requirement_base +\
           ' ) as b ON a.UID = b.UID GROUP BY a.UID'
 
-qry_three = 'SELECT c.UID FROM (( ' + requirement_base +\
-          ' ) as a INNER JOIN (' + requirement_base +\
-          ' ) as b ON a.UID = b.UID) as c INNER JOIN ( '+ requirement_base +\
+qry_three = 'SELECT c.UID FROM (' + qry_two +\
+          ') as c INNER JOIN ( ' + requirement_base +\
           ') as d ON c.UID = d.UID GROUP BY c.UID'
 
 qry_four = 'SELECT e.UID FROM (' + qry_three +\
@@ -81,7 +80,6 @@ def attr_build_std(uid, *reqs):
         qry_args.append(uid)
         qry_args.extend(req)
     return qry_args
-
 
 def db_to_set(db_tuples):
     'create set from returned db tuples'
