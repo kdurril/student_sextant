@@ -163,7 +163,7 @@ def directory_entries():
         else:
             return redirect('/')
 
-@app.route('/<int:uid>', methods=['GET'])
+@app.route('/<uid>', methods=['GET'])
 def auditbyid(uid):
     '''Program and course info for student page'''
     '''Used to provide the audit and course review'''
@@ -357,7 +357,7 @@ def auditalt(user_id, specialization_id):
 
 
 #advising note display
-@app.route('/<int:uid>/advisingnote')
+@app.route('/<uid>/advisingnote')
 def advisingnote(uid):
     '''Subform of auditbyid, each advising note gets UID as hidden field,
      foreign key'''
@@ -394,7 +394,7 @@ def advisingnote_add():
     flash('New entry was successfully posted')
     return redirect(url_for('advisingnote', uid=request.form['UID']))
 
-@app.route('/<int:uid>/advisingnote/review')
+@app.route('/<uid>/advisingnote/review')
 def advisingnote_review(uid):
     '''Subform of auditbyid, each advising note gets UID as hidden field,
      foreign key'''
@@ -416,7 +416,7 @@ def advisingnote_review(uid):
         inquiry_list=inquiry_list)
 
 #advising note form
-@app.route('/<int:uid>/advisingnote/edit/<int:note_id>', methods=['GET','POST'])
+@app.route('/<uid>/advisingnote/edit/<int:note_id>', methods=['GET','POST'])
 def advisingnote_edit(uid, note_id):
     '''Inserts the advisingnote into the database'''
 
@@ -510,7 +510,7 @@ def advisingnote_email():
 
 
 #inquiry form
-@app.route('/<int:uid>/courserequest', methods=['GET', 'POST'])
+@app.route('/<uid>/courserequest', methods=['GET', 'POST'])
 def view_course_request(uid):
     "Subform of auditbyid, each request has UID as hidden field FK"
     "Secondary advising form"
@@ -575,7 +575,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 #Enhance the upload to append the UID to a file
-@app.route('/<int:uid>/supportdocs', methods=['GET', 'POST'])
+@app.route('/<uid>/supportdocs', methods=['GET', 'POST'])
 def upload_file_view(uid):
     "Form for uploading files"
     "This should be a subform of an advising note"
