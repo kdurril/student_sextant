@@ -1,3 +1,5 @@
+To run: launch runserver.py from the app folder
+
 ## A student's goal is to graduate. To graduate, each student must complete a specialization
 ## Each specialization requires 3 parts: core requirements, specailization requirements and electives, and general electives
 ## Requirements need that all of a set (such as SOC requires 610 and 611) or a subset where 1 or more members of the set fulfills the requirement without regard to order
