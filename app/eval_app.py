@@ -3,6 +3,7 @@
 #-*- coding: utf-8 -*-
 
 import sqlite3
+from itertools import chain
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 
@@ -15,6 +16,7 @@ from contextlib import closing
 import audit_review_class as arc
 import audit_dicts as ad
 import audit_sql as asql
+import audit_specialization as areqs
 
 #import courseaudit_sql
 #import audit_dict_v1_3 as sp_audit
@@ -641,6 +643,44 @@ def stats_agrregate_credit():
                         posi_list=posi_list,
                         ppcn_list=ppcn_list,
                         mepp_list=mepp_list)
+
+@app.route('/stats/<specialization_id>', methods=['GET'])
+def stats_requirements(specialization_id):
+    
+
+    def req_build(spec_list):
+        new_args = chain.from_iterable(spec_list)
+        reqs = areqs.attr_build(args)
+        cur = g.db.execute(areqs.qry_three, reqs)
+        return [dict(UID=row[0]) for row in cur.fetchall()]
+
+    spec_list = areqs.lookup[specialization_id]
+        
+    #Make list of links to alternative specializations
+    specialization_list = [dict(specialization=major) for major in asql.specializations]
+
+    alt_spec_uri = [dict(uri="/stats/{0}".format(x['specialization']),\
+            specialization=x['specialization']) for x in specialization_list]
+    
+    reqs = areqs.attr_build(chain.from_iterable(spec_list[:1]))
+    cur = g.db.execute(areqs.qry_one, reqs)
+    core = [dict(UID=row[0]) for row in cur.fetchall()]
+
+    reqs = areqs.attr_build(chain.from_iterable(spec_list[:2]))
+    cur = g.db.execute(areqs.qry_two, reqs)
+    specialization = [dict(UID=row[0]) for row in cur.fetchall()]
+
+    reqs = areqs.attr_build(chain.from_iterable(spec_list[:3]))
+    cur = g.db.execute(areqs.qry_three, reqs)
+    project = [dict(UID=row[0]) for row in cur.fetchall()]
+
+    #areqs.qry_env_1, areqs.qry_env_2, areqs.qry_env_3, 
+    return render_template('stat_requirements.html', core=core, 
+                                specialization=specialization, 
+                                project=project,
+                                alt_spec_uri=alt_spec_uri,
+                                specialization_id=specialization_id)
+
 
 
 if __name__ == '__main__':

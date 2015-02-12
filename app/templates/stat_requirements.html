@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('stats_agrregate_credit') }}" method=post class=add-entry>
+      <dl>
+        <dt>UID:
+        <dd><input type=text size=12 name=UID>
+        
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+
+  <h3>Other specializations</h3>
+  {% for item in alt_spec_uri %}
+  <a href="{{item.uri}}">{{item.specialization}}</a>
+  {% endfor%}
+
+ <h3>{{ specialization_id }}</h3>
+
+  <h3>Project</h3>
+  <ul class=mapo_list>
+    {% for entry in project %}
+      <li><a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h3>Specialization</h3>
+  <ul class=mapo_list>
+    {% for entry in specialization %}
+      <li><a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h3>Core</h3>
+  <ul class=mapo_list>
+    {% for entry in core %}
+      <li><a href="/{{entry.UID}}">{{ entry.UID }}</a></li>
+    {% endfor %}
+  </ul>
+
+
+
+
+  
+  
+
+
+
+  {% endif %}
+  
+  
+  
+{% endblock %}
