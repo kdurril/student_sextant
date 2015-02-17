@@ -194,7 +194,11 @@ def auditbyid(uid):
     #Get program min credit
     program_credit_min = ad.credit_dict[program_type]['Minreq']
     directory_list[0]['m_start'] = program_start[0]['m_start']
-    directory_list[0]['m_finish'] = list(arc.semrev("201408", totalcredit, ave_credit, program_credit_min))
+    #directory_list[0]['m_finish'] = list(arc.semrev("201408", totalcredit, ave_credit, program_credit_min))
+    
+    sem_end = arc.SemCal()
+    directory_list[0]['m_finish'] = sem_end.final_term(int(program_start[0]['m_start'][:4]), 
+        str(program_start[0]['m_start'][4:]),3,48, 12)
     if len(directory_list[0]['m_finish']) < 1:
         directory_list[0]['m_finish'] = list()
     else:

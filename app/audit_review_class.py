@@ -3,6 +3,7 @@
 
 
 # A class to contain the UID object and its methods
+from math import ceil
 # 
 class CourseReview(list):
         '''initialize the object, subclass list, create as a list'''
@@ -102,6 +103,73 @@ def semrev(year_base, currentcredit, creditpersem, creditend):
         #summerI, summerII
             semstart += 1
         yield (str(year)+str(semlist[(semstart%5)-1]), currentcredit)
+
+class SemCal(object):
+    '''
+    revised semesters in current program 
+    input current credits, current semester and min credits to graduate
+    returns iterator of remesters remaining
+    '''
+    def sem_gen(start_y=2015, start_sem='08', duration_y=5):
+            years = (x for x in range(start_y, start_y+duration_y))
+            sems = ('01','05','07','08','12')
+            max_credit = (15, 3, 3, 15, 3)
+            start = str(start_y)+start_sem
+            for y in years:
+                for x in sems:
+                    if str(y)+x >= start:
+                        yield str(y)+x
+    
+    def __init__(self, start_y=2015, start_sem='08'):
+        
+        self.base_sems = self.sem_gen        
+        self.start_y = start_y
+        self.start_sem = start_sem
+        self.end_sem = None
+        self.end_y = None
+        self.fall = 'fall'
+        self.spring = 'spring'
+        self.winter = None
+        self.summer_1 = None
+        self.summer_2 = None
+        self.credit_per_sem = 12
+        self.current_credits = 0
+        self.current_sem = None
+        self.sem_num = ('01','05','07','08','12')
+        self.sem_max_credit = (15, 3, 3, 15, 3)
+        self.term_name = ('spring', 'summer_1', 'summer_2',
+                          'fall','winter')
+        
+    def __repr__(self):
+        return str((str(self.start_y), self.start_sem))
+        
+    
+    def sem_gen(self, start_y=2015, start_sem='08', duration_y=5):
+        years = (x for x in range(start_y, start_y+duration_y))
+        sems = ('01','05','07','08','12')
+        max_credit = (15, 3, 3, 15, 3)
+        start = str(start_y)+start_sem
+        for y in years:
+            for x in sems:
+                if str(y)+x >= start:
+                    yield str(y)+x
+           
+    def term_filter(self, fall='fall', spring='spring', winter=None, summer_1=None, summer_2=None):
+        terms = {'fall':'08','winter':'12', 'spring':'01',
+                 'summer_1':'05', 'summer_2':'07'}
+        max_credit = {'fall':15,'winter':3, 'spring':15,
+                 'summer_1':3, 'summer_2':3}
+        include = [x for x in [fall,spring,winter,summer_1, summer_2] if x != None]
+        selected = [terms[x] for x in [y for y in include]]
+        return [x for x in self.base_sems(self.start_y, self.start_sem) if x[-2:] in selected]
+    
+    def sem_remain(self, program_min, current_credit, credit_per_sem):
+        return ceil((program_min-current_credit)/credit_per_sem)     
+    
+    def final_term(self, start_y, start_sem, current_credit, program_min, credit_per_sem):
+        remaining_sem = int(ceil((program_min-current_credit)/credit_per_sem))
+        final = self.term_filter(self.fall, self.spring, self.winter, self.summer_1, self.summer_2)
+        return final[:remaining_sem]
 
 
  
