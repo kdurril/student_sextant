@@ -1,1 +1,1 @@
-web: gunicorn app.eval_app --log-file -
+web: gunicorn app.eval_app:app --log-file -
