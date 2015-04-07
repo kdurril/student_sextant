@@ -10,7 +10,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from werkzeug import secure_filename
 import os
 
-from flask_mail import Mail, Message
+#from flask_mail import Mail, Message
 
 from contextlib import closing
 import audit_review_class as arc
@@ -58,8 +58,6 @@ def get_db():
 
 #Entry for waiver and make subunit of student_notes
 #Display waiver by student
-
-
 
 @app.before_request
 def before_request():
